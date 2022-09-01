@@ -28,3 +28,18 @@ submitBtn.addEventListener('click', () => {
     submitFn();
 })
 //
+const apiAction = (() => {
+    const keycode = "917a17f77a60ae96ee081212e94e3f75";
+    const getWeatherData = async (location) => {
+        const searchLocation = location;
+        const searchData = await fetch(`https://api.openweathermap.org/data/2.5/forecast?id=524901&appid=${keycode}`, {
+            mode: "cors"
+        })
+        return searchData;
+    }
+    const mainFn = (location) => {
+        const data = getWeatherData(location);
+        console.log(data);
+    }
+    return { mainFn };
+})();
