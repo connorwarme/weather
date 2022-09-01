@@ -25,14 +25,19 @@ const apiAction = (() => {
     const currentValue = "917a17f77a60ae96ee081212e94e3f75";
     const getWeatherData = async (location) => {
         const searchLocation = location;
-        const searchData = await fetch(`https://api.openweathermap.org/data/2.5/forecast?id=524901&appid=${currentValue}`, {
+        console.log(searchLocation);
+        const searchData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&appid=${currentValue}`, {
             mode: "cors"
         })
-        return searchData;
+        const objectData = await searchData.json();
+        return objectData;
     }
-    const mainFn = (location) => {
-        const data = getWeatherData(location);
+    const mainFn = async (location) => {
+        const data = await getWeatherData(location);
         console.log(data);
     }
     return { mainFn };
 })();
+
+const testA = apiAction.mainFn("Denver");
+console.log(testA);
