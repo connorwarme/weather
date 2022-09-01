@@ -1,17 +1,10 @@
-// helper functions
-const setAttributes = (element, attributes) => {
-    Object.entries(attributes).forEach(([key, value]) => {
-        element.setAttribute(key, value);
-    })
-}
-const createElement = (type, attributes) => {
-    const newElement = document.createElement(`${type}`);
-    if (attributes == null) return newElement;
-    setAttributes(newElement, attributes);
-    return newElement;
-}
-// get main div in DOM
-const main = document.querySelector('div.main');
+import './style.css';
+import createElement from './utility';
+
+// get main body in DOM
+const body = document.querySelector('body');
+const main = createElement('div', {"class": "main"});
+body.appendChild(main);
 // make input field and submit button
 const inputField = createElement('input', {"class": "inputField", "id": "inputField"});
 const submitBtn = createElement('button', {"class": "submitBtn", "aria-label": "Submit"});
