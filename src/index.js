@@ -20,7 +20,6 @@ main.appendChild(submitBtn);
 // submit listener function
 const submitFn = () => {
   const userInput = inputField.value;
-  console.log(userInput);
   // needs edit
   apiAction.mainFn(userInput);
   inputField.value = "";
@@ -33,7 +32,6 @@ const apiAction = (() => {
   const currentValue = "917a17f77a60ae96ee081212e94e3f75";
   const getWeatherData = async (location) => {
     const searchLocation = location;
-    console.log(searchLocation);
     const megaData = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${searchLocation}&appid=${currentValue}&units=imperial`,
       {
