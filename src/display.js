@@ -18,12 +18,14 @@ const extraFactory = (input) => {
     // could use forEach
     // need input to be an array of the object's properties
 }
+// goal: display of extra data (box)
+// sunrise, sunset, feels like, pop, precip accum, pressure, airq, vis, wind, humidity 
 const obj = {
     city: "Denver",
     country: "US",
-    currentTemp: "82",
-    currentConditions: "Rain",
-    currentDescription: "light rain",
+    temp: "82",
+    conditions: "Rain",
+    description: "light rain",
     wind: "8",
     pop: "0.47",
     sunrise: 1662121750,
