@@ -7,6 +7,7 @@ const body = document.querySelector("body");
 const main = createElement("div", { class: "main" });
 body.appendChild(main);
 // make input field and submit button
+const inputContainer = createElement('div', {"class": "inputContainer"});
 const inputField = createElement("input", {
   class: "inputField",
   id: "inputField",
@@ -16,8 +17,9 @@ const submitBtn = createElement("button", {
   "aria-label": "Submit",
 });
 submitBtn.textContent = "Submit";
-main.appendChild(inputField);
-main.appendChild(submitBtn);
+inputContainer.appendChild(inputField);
+inputContainer.appendChild(submitBtn);
+main.appendChild(inputContainer);
 // submit listener function
 const submitFn = () => {
   // const userInput = inputField.value;

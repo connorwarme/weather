@@ -1,6 +1,6 @@
 import createElement from "./utility";
 // create display
-const detailContainer = createElement('div', {"class": "extraContainer"});
+const detailContainer = createElement('div', {"class": "detailContainer"});
 const displaySingle = (input) => {
     const single = createElement('div', {"class": `${input}`});
     single.textContent = `${input}`;
@@ -83,6 +83,8 @@ const fillDetailContainer = (input) => {
     console.log(input);
     detailContainer.appendChild(detail.windFn(input.wind));
     detailContainer.appendChild(detail.visFn(input.visibility));
+    detailContainer.appendChild(detail.feelsFn(input.feelsLike));
+    detailContainer.appendChild(detail.humidFn(input.humidity));
     detailContainer.appendChild(detail.popFn(input.pop));
     detailContainer.appendChild(detail.precipFn(input.precip3h));
     detailContainer.appendChild(detail.airFn(input.airQuality));

@@ -4,13 +4,15 @@
 }
 .main {
     background-color: slateblue;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
-.extraContainer {
+.detailContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, 1fr);
 }
-.extraContainer > div {
+.detailContainer > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
