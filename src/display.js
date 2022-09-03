@@ -18,4 +18,21 @@ const extraFactory = (input) => {
     // could use forEach
     // need input to be an array of the object's properties
 }
-export { extraDiv, extraFactory }
+const obj = {
+    city: "Denver",
+    country: "US",
+    currentTemp: "82",
+    currentConditions: "Rain",
+    currentDescription: "light rain",
+    wind: "8",
+    pop: "0.47",
+    sunrise: 1662121750,
+    sunset: 1662168628,
+    humidity: 28,
+    feelsLike: "81",
+    visibility: 10000,
+    precip3h: "0.13",
+    airQuality: "unknown",
+    pressure: 1015,
+}
+export { extraDiv, extraFactory, obj }

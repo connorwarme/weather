@@ -1,6 +1,6 @@
 import "./style.css";
 import createElement from "./utility";
-import { extraDiv, extraFactory } from "./display";
+import { obj, extraFactory } from "./display";
 
 // get main body in DOM
 const body = document.querySelector("body");
