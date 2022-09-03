@@ -1,6 +1,6 @@
 import "./style.css";
 import createElement from "./utility";
-import { obj, extraFactory } from "./display";
+import { obj, fillDetailContainer } from "./display";
 
 // get main body in DOM
 const body = document.querySelector("body");
@@ -20,7 +20,7 @@ main.appendChild(inputField);
 main.appendChild(submitBtn);
 // submit listener function
 const submitFn = () => {
-  const userInput = inputField.value;
+  // const userInput = inputField.value;
   // needs edit
   apiAction.mainFn(obj);
   inputField.value = "";
@@ -73,7 +73,7 @@ const apiAction = (() => {
     // console.log(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline
-    const input = extraFactory(location);
+    const input = fillDetailContainer(obj);
     main.appendChild(input);
   };
 

@@ -18,11 +18,8 @@ const extraFactory = (input) => {
     // could use forEach
     // need input to be an array of the object's properties
 }
-const fillDetailContainer = (input) => {
-
-}
 const detail = (() => {
-    _helper = (description, value) => {
+    const helper = (description, value) => {
         const container = createElement('div', {"class": "detailDiv"});
         const label = createElement('h4', {"class": "detailLabel"});
         const data = createElement('h3', {"class": "detailData"});
@@ -32,52 +29,68 @@ const detail = (() => {
         container.appendChild(data);
         return container;
     }
-    windFn = (value) => {
-        // might need a few things - one for wind speed, another for direction
+    const windFn = (value) => {
+        // !!! might need a few things - one for wind speed, another for direction
+        const wind = helper("WIND", `${value}km/h`);
+        // check units
+        return wind;
     }
-    visFn = (value) => {
-        const vis = _helper('VISIBILITY', `${value / 1000} km`);
+    const visFn = (value) => {
+        const vis = helper('VISIBILITY', `${value / 1000} km`);
         return vis;
     }
-    humidFn = (value) => {
-        const humid = _helper('HUMIDITY', `${value}%`);
+    const humidFn = (value) => {
+        const humid = helper('HUMIDITY', `${value}%`);
         return humid;
     }
-    feelsFn = (value) => {
-        const feels = _helper('FEELS LIKE', `${value}`);
+    const feelsFn = (value) => {
+        const feels = helper('FEELS LIKE', `${value}`);
         return feels;
     }
-    popFn = (value) => {
-        const pop = _helper('CHANCE OF PRECIP', `${value * 100}%`);
+    const popFn = (value) => {
+        const pop = helper('CHANCE OF PRECIP', `${value * 100}%`);
         return pop;
     }
-    precipFn = (value) => {
-        const precip = _helper('PRECIP ACCUMULATION', `${value}mm in last 3h`);
+    const precipFn = (value) => {
+        const precip = helper('PRECIP ACCUMULATION', `${value}mm in last 3h`);
         return precip;
     }
-    airFn = (value) => {
-        const air = _helper('AIR QUALITY', `${value}`);
+    const airFn = (value) => {
+        const air = helper('AIR QUALITY', `${value}`);
         // !!! might need units clarifier (score out of 100?)
         return air;
     }
-    pressureFn = (value) => {
-        const pressure = _helper('PRESSURE', `${value}`);
+    const pressureFn = (value) => {
+        const pressure = helper('PRESSURE', `${value}`);
         // !!! need units
         return pressure;
     }
-    sunriseFn = (value) => {
+    const sunriseFn = (value) => {
         // !!! need fn to convert value to time (also check for local time..)
         const time = value;
-        const rise = _helper('SUNRISE', `${time}`);
+        const rise = helper('SUNRISE', `${time}`);
         return rise;
     }
-    sunsetFn = (value) => {
+    const sunsetFn = (value) => {
         // !!! need to run value in a fn, like above
         const time = value;
-        const set = _helper('SUNSET', `${time}`);
+        const set = helper('SUNSET', `${time}`);
         return set;
     }
+    return { windFn, visFn, humidFn, feelsFn, popFn, precipFn, airFn, pressureFn, sunriseFn, sunsetFn }
 })();
+const fillDetailContainer = (input) => {
+    console.log(input);
+    detailContainer.appendChild(detail.windFn(input.wind));
+    detailContainer.appendChild(detail.visFn(input.visibility));
+    detailContainer.appendChild(detail.popFn(input.pop));
+    detailContainer.appendChild(detail.precipFn(input.precip3h));
+    detailContainer.appendChild(detail.airFn(input.airQuality));
+    detailContainer.appendChild(detail.pressureFn(input.pressure));
+    detailContainer.appendChild(detail.sunriseFn(input.sunrise));
+    detailContainer.appendChild(detail.sunsetFn(input.sunset));
+    return detailContainer;
+}
 // goal: display of extra data (box)
 // sunrise, sunset, feels like, pop, precip accum, pressure, airq, vis, wind, humidity 
 const obj = {
@@ -97,4 +110,4 @@ const obj = {
     sunrise: 1662121750,
     sunset: 1662168628,
 }
-export { extraDiv, extraFactory, obj }
+export { fillDetailContainer, obj }
