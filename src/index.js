@@ -22,7 +22,7 @@ main.appendChild(submitBtn);
 const submitFn = () => {
   const userInput = inputField.value;
   // needs edit
-  apiAction.mainFn(userInput);
+  apiAction.mainFn(obj);
   inputField.value = "";
 };
 submitBtn.addEventListener("click", () => {
@@ -66,12 +66,15 @@ const apiAction = (() => {
   };
 
   const mainFn = async (location) => {
-    const data = await getWeatherData(location);
-    console.log(data);
-    const forDisplay = (declareData(data));
-    const extra = extraFactory(forDisplay);
-    console.log(forDisplay);
-    main.appendChild(extra);
+    // const data = await getWeatherData(location);
+    // console.log(data);
+    // const forDisplay = (declareData(data));
+    // const extra = extraFactory(forDisplay);
+    // console.log(forDisplay);
+    // main.appendChild(extra);
+    // !!! need to remove, just for work while offline
+    const input = extraFactory(location);
+    main.appendChild(input);
   };
 
   return { mainFn };
