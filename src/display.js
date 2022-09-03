@@ -21,7 +21,7 @@ const extraFactory = (input) => {
 const detail = (() => {
     const helper = (description, value) => {
         const container = createElement('div', {"class": "detailDiv"});
-        const label = createElement('h4', {"class": "detailLabel"});
+        const label = createElement('div', {"class": "detailLabel"});
         const data = createElement('div', {"class": "detailData"});
         label.textContent = `${description}`;
         data.textContent = `${value}`;
@@ -48,11 +48,19 @@ const detail = (() => {
         return feels;
     }
     const popFn = (value) => {
-        const pop = helper('CHANCE OF PRECIP', `${value * 100}%`);
+        const pop = helper('PRECIPITATION', `${value * 100}%`);
+        const label = createElement('div', {"class": "popLabel"});
+        label.textContent = "CHANCE OF";
+        // !!! not sure if this works
+        pop.insertBefore(label, pop.firstChild);
         return pop;
     }
     const precipFn = (value) => {
-        const precip = helper('PRECIP ACCUMULATION', `${value}mm in last 3h`);
+        const precip = helper('ACCUMULATION', `${value}mm in last 3h`);
+        const label = createElement('div', {"class": "precipLabel"});
+        label.textContent = "PRECIPITATION";
+        // !!! not sure if this works
+        precip.insertBefore(label, precip.firstChild);
         return precip;
     }
     const airFn = (value) => {

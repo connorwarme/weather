@@ -66,13 +66,14 @@ const apiAction = (() => {
     const airData = await airFetch.json();
     return airData;
   }
-  }
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
   // 
   const declareData = (current, forecast, air) => {
     // !!! need to confirm current data, find airq, and think thru what else should be included
     // city, country, current temp, high, low, current conditions & descrrption, current weather icon?,
-    // 
+    // then stuff for detailContainer
+    // !!! use f to destructure? is that was eslint is going for?
+    const f = forecast.list[0];
     const city = current.city.name;
     const country = current.city.country;
     const temp = current.list[0].main.temp;
@@ -90,7 +91,7 @@ const apiAction = (() => {
     const precip = forecast.list[0].rain;
     const airQuality = "need other api";
     const pressure = forecast.list[0].main.pressure;
-    return {city, country, temp, conditions, description, wind, pop, sunrise, sunset, humidity, feelsLike, visibility, precip, airQuality, pressure};
+    return {city, country, temp, high, low, conditions, description, wind, pop, sunrise, sunset, humidity, feelsLike, visibility, precip, airQuality, pressure};
   };
 
   const mainFn = async (location) => {
@@ -104,6 +105,10 @@ const apiAction = (() => {
     const input = fillDetailContainer(obj);
     main.appendChild(input);
   };
-
+  // still need to sort out how to parse data for forecast section
+  // for desktop display: a card for each day, which has the values (3h increments) in list style
+  // time, temp, conditions, pop? (if it's greater than 0)
+  // show cards horizontally
+  // for mobile display: same cards, but show vertically
   return { mainFn };
 })();
