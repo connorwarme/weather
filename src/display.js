@@ -1,19 +1,21 @@
 import createElement from "./utility";
 // create display
-const extraData = () => {
-    const extraDiv = createElement('div', {"class": "extraContainer"});
-    return extraDiv;
-}
-const extraFactory = (input) => {
-    for (let i = 0; i < input.length; i += 1) {
-        console.log(input[i]);
-    }
-    // could use forEach
-    // need input to be an array of the object's properties
-}
+const extraDiv = createElement('div', {"class": "extraContainer"});
 const displaySingle = (input) => {
     const single = createElement('div', {"class": `${input}`});
     single.textContent = `${input}`;
     // !!! might need two lines of content - one for key, one for property
     return single;
 }
+const extraFactory = (input) => {
+    console.log(input.city);
+    const array = Object.keys(input);
+    array.forEach(index => {
+        console.log(`${index} in ${input[index]}`);
+        extraDiv.appendChild(displaySingle(input[index]));
+    })
+    return extraDiv;
+    // could use forEach
+    // need input to be an array of the object's properties
+}
+export { extraDiv, extraFactory }

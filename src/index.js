@@ -1,5 +1,6 @@
 import "./style.css";
 import createElement from "./utility";
+import { extraDiv, extraFactory } from "./display";
 
 // get main body in DOM
 const body = document.querySelector("body");
@@ -42,29 +43,31 @@ const apiAction = (() => {
     return forecastData;
   };
   const declareData = (input) => {
+    const city = input.city.name;
+    const country = input.city.country;
     const currentTemp = input.list[0].main.temp;
     const currentConditions = input.list[0].weather[0].main;
     const currentDescription = input.list[0].weather[0].description;
-    const currentWind = input.list[0].wind;
-    const currentPop = input.list[0].pop;
-    console.log(
-      currentTemp,
-      currentConditions,
-      currentDescription,
-      currentWind,
-      currentPop
-    );
+    const wind = input.list[0].wind;
+    const pop = input.list[0].pop;
+    const sunrise = input.city.sunrise;
+    const sunset = input.city.sunset;
+    const humidity = input.list[0].main.humidity;
+    const feelsLike = input.list[0].main.feels_like;
+    const visibility = input.list[0].visibility;
+    const precip3h = input.list[0].rain;
+    const airQuality = "need other api";
+    const pressure = input.list[0].main.pressure;
+    return {city, country, currentTemp, currentConditions, currentDescription, wind, pop, sunrise, sunset, humidity, feelsLike, visibility, precip3h, airQuality, pressure};
   };
-  const declareCity = (input) => {
-    const city = input.city.name;
-    const country = input.city.country;
-    console.log(city, country);
-  }
+
   const mainFn = async (location) => {
     const data = await getWeatherData(location);
     console.log(data);
-    declareData(data);
-    declareCity(data);
+    const forDisplay = (declareData(data));
+    const extra = extraFactory(forDisplay);
+    console.log(forDisplay);
+    main.appendChild(extra);
   };
 
   return { mainFn };
