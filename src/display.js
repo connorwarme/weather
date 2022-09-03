@@ -22,7 +22,7 @@ const detail = (() => {
     const helper = (description, value) => {
         const container = createElement('div', {"class": "detailDiv"});
         const label = createElement('h4', {"class": "detailLabel"});
-        const data = createElement('h3', {"class": "detailData"});
+        const data = createElement('div', {"class": "detailData"});
         label.textContent = `${description}`;
         data.textContent = `${value}`;
         container.appendChild(label);

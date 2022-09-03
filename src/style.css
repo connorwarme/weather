@@ -5,3 +5,14 @@
 .main {
     background-color: slateblue;
 }
+.extraContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+}
+.extraContainer > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
