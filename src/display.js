@@ -86,7 +86,7 @@ const fillDetailContainer = (input) => {
     detailContainer.appendChild(detail.feelsFn(input.feelsLike));
     detailContainer.appendChild(detail.humidFn(input.humidity));
     detailContainer.appendChild(detail.popFn(input.pop));
-    detailContainer.appendChild(detail.precipFn(input.precip3h));
+    detailContainer.appendChild(detail.precipFn(input.precip));
     detailContainer.appendChild(detail.airFn(input.airQuality));
     detailContainer.appendChild(detail.pressureFn(input.pressure));
     detailContainer.appendChild(detail.sunriseFn(input.sunrise));
@@ -106,7 +106,7 @@ const obj = {
     humidity: 28,
     feelsLike: "81",
     pop: "0.47",
-    precip3h: "0.13",
+    precip: "0.13",
     airQuality: "unknown",
     pressure: 1015,
     sunrise: 1662121750,

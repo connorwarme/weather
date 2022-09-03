@@ -87,10 +87,10 @@ const apiAction = (() => {
     const humidity = forecast.list[0].main.humidity;
     const feelsLike = forecast.list[0].main.feels_like;
     const visibility = forecast.list[0].visibility;
-    const precip3h = forecast.list[0].rain;
+    const precip = forecast.list[0].rain;
     const airQuality = "need other api";
     const pressure = forecast.list[0].main.pressure;
-    return {city, country, temp, conditions, description, wind, pop, sunrise, sunset, humidity, feelsLike, visibility, precip3h, airQuality, pressure};
+    return {city, country, temp, conditions, description, wind, pop, sunrise, sunset, humidity, feelsLike, visibility, precip, airQuality, pressure};
   };
 
   const mainFn = async (location) => {
