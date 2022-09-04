@@ -1,6 +1,7 @@
 import "./style.css";
 import createElement from "./utility";
-import { obj, fillDetailContainer } from "./display";
+import { obj, fillDetailContainer } from "./displayExtra";
+import { fillMainContainer } from "./displayMain";
 
 // get main body in DOM
 const body = document.querySelector("body");
@@ -102,8 +103,9 @@ const apiAction = (() => {
     // console.log(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline
-    const input = fillDetailContainer(obj);
-    main.appendChild(input);
+    const detail = fillDetailContainer(obj);
+    main.appendChild(detail);
+    const main = fillMainContainer(obj);
   };
   // still need to sort out how to parse data for forecast section
   // for desktop display: a card for each day, which has the values (3h increments) in list style
