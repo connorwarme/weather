@@ -1,7 +1,7 @@
 import "./style.css";
 import createElement from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
-import { fillMainContainer } from "./displayMain";
+import fillMainContainer from "./displayMain";
 
 // get main body in DOM
 const body = document.querySelector("body");

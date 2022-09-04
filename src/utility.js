@@ -20,4 +20,13 @@ const time = (input) => {
     // 2) convert unix time to local time
     // return newTime
 }
+// temp -> convert F to C
+// planning to have both in an object
+const temp = (input) => {
+    const tempObj = {
+        far: Number(input),
+        cel: Math.round(((Number(input) - 32) * (5/9))),
+    }
+    return tempObj;
+}
 export default createElement;
