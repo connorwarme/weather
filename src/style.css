@@ -6,8 +6,20 @@
     background-color: slateblue;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 5fr;
+}.inputContainer {
+    grid-column: 1/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainContainer {
+    grid-row: 2/3;
+    grid-column: 1/2;
 }
 .detailContainer {
+    grid-row: 2/3;
+    grid-column: 2/3;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, 1fr);

@@ -105,7 +105,8 @@ const apiAction = (() => {
     // !!! need to remove, just for work while offline
     const detail = fillDetailContainer(obj);
     main.appendChild(detail);
-    const main = fillMainContainer(obj);
+    const current = fillMainContainer(obj);
+    main.appendChild(current);
   };
   // still need to sort out how to parse data for forecast section
   // for desktop display: a card for each day, which has the values (3h increments) in list style
