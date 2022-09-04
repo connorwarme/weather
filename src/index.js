@@ -1,5 +1,5 @@
 import "./style.css";
-import createElement from "./utility";
+import { createElement, tempFn } from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
 import fillMainContainer from "./displayMain";
 
@@ -78,9 +78,9 @@ const apiAction = (() => {
     const f = forecast.list[0];
     const city = current.city.name;
     const country = current.city.country;
-    const temp = current.list[0].main.temp;
-    const high = "";
-    const low = "";
+    const temp = tempFn(current.list[0].main.temp);
+    const high = tempFn();
+    const low = tempFn();
     const conditions = forecast.list[0].weather[0].main;
     const description = forecast.list[0].weather[0].description;
     const wind = forecast.list[0].wind;
@@ -88,7 +88,7 @@ const apiAction = (() => {
     const sunrise = forecast.city.sunrise;
     const sunset = forecast.city.sunset;
     const humidity = forecast.list[0].main.humidity;
-    const feelsLike = forecast.list[0].main.feels_like;
+    const feelsLike = tempFn(forecast.list[0].main.feels_like);
     const visibility = forecast.list[0].visibility;
     const precip = forecast.list[0].rain;
     const airQuality = "need other api";

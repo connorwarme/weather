@@ -22,11 +22,11 @@ const time = (input) => {
 }
 // temp -> convert F to C
 // planning to have both in an object
-const temp = (input) => {
+const tempFn = (input) => {
     const tempObj = {
         far: Number(input),
-        cel: Math.round(((Number(input) - 32) * (5/9))),
+        cel: Math.round((Number(input) - 32) * (5/9)),
     }
     return tempObj;
 }
-export default createElement;
+export { createElement, tempFn };
