@@ -8,7 +8,7 @@ const body = document.querySelector("body");
 const main = createElement("div", { class: "main" });
 body.appendChild(main);
 // make input field and submit button
-const inputContainer = createElement('div', {"class": "inputContainer"});
+const inputContainer = createElement("div", { class: "inputContainer" });
 const inputField = createElement("input", {
   class: "inputField",
   id: "inputField",
@@ -59,16 +59,17 @@ const apiAction = (() => {
     return currentData;
   };
   const getAirQ = async (location) => {
-    const airFetch = await fetch( `https://api.openweathermap.org/data/2.5/current?q=${location}&appid=${currentValue}&units=imperial`,
-    {
-      mode: "cors",
-    }
+    const airFetch = await fetch(
+      `https://api.openweathermap.org/data/2.5/current?q=${location}&appid=${currentValue}&units=imperial`,
+      {
+        mode: "cors",
+      }
     );
     const airData = await airFetch.json();
     return airData;
-  }
+  };
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
-  // 
+  //
   const declareData = (current, forecast, air) => {
     // !!! need to confirm current data, find airq, and think thru what else should be included
     // city, country, current temp, high, low, current conditions & descrrption, current weather icon?,
@@ -92,7 +93,25 @@ const apiAction = (() => {
     const precip = forecast.list[0].rain;
     const airQuality = "need other api";
     const pressure = forecast.list[0].main.pressure;
-    return {city, country, temp, high, low, conditions, description, wind, pop, sunrise, sunset, humidity, feelsLike, visibility, precip, airQuality, pressure};
+    return {
+      city,
+      country,
+      temp,
+      high,
+      low,
+      conditions,
+      description,
+      wind,
+      pop,
+      sunrise,
+      sunset,
+      humidity,
+      feelsLike,
+      visibility,
+      precip,
+      airQuality,
+      pressure,
+    };
   };
 
   const mainFn = async (location) => {

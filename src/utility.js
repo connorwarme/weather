@@ -12,4 +12,12 @@ const createElement = (type, attributes) => {
     setAttributes(newElement, attributes);
     return newElement;
 }
+// time -> transform unix to standard
+const time = (input) => {
+    console.log(input);
+    // needs a few steps
+    // 1) find local time (of user)
+    // 2) convert unix time to local time
+    // return newTime
+}
 export default createElement;
