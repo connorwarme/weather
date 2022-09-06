@@ -1,4 +1,4 @@
-import createElement from "./utility";
+import { createElement } from "./utility";
 
 //
 const displayMain = (() => {

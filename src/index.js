@@ -23,9 +23,9 @@ inputContainer.appendChild(submitBtn);
 main.appendChild(inputContainer);
 // submit listener function
 const submitFn = () => {
-  // const userInput = inputField.value;
+  const userInput = inputField.value;
   // needs edit
-  apiAction.mainFn(obj);
+  apiAction.mainFn(userInput);
   inputField.value = "";
 };
 submitBtn.addEventListener("click", () => {
@@ -50,7 +50,7 @@ const apiAction = (() => {
   const getCurrent = async (location) => {
     // !!! need to check api call - accurate for current conditions?
     const currentFetch = await fetch(
-      `https://api.openweathermap.org/data/2.5/current?q=${location}&appid=${currentValue}&units=imperial`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${currentValue}&units=imperial`,
       {
         mode: "cors",
       }
@@ -60,7 +60,7 @@ const apiAction = (() => {
   };
   const getAirQ = async (location) => {
     const airFetch = await fetch(
-      `https://api.openweathermap.org/data/2.5/current?q=${location}&appid=${currentValue}&units=imperial`,
+      `http://api.openweathermap.org/data/2.5/air_pollution?lat=40.39&lon=-105.07&appid=${currentValue}`,
       {
         mode: "cors",
       }
@@ -79,8 +79,9 @@ const apiAction = (() => {
     const city = current.city.name;
     const country = current.city.country;
     const temp = tempFn(current.list[0].main.temp);
-    const high = tempFn();
-    const low = tempFn();
+    // !!! needs edit (and add to return)
+    // const high = tempFn();
+    // const low = tempFn();
     const conditions = forecast.list[0].weather[0].main;
     const description = forecast.list[0].weather[0].description;
     const wind = forecast.list[0].wind;
@@ -97,8 +98,6 @@ const apiAction = (() => {
       city,
       country,
       temp,
-      high,
-      low,
       conditions,
       description,
       wind,
@@ -115,11 +114,15 @@ const apiAction = (() => {
   };
 
   const mainFn = async (location) => {
-    // const data = await getWeatherData(location);
-    // console.log(data);
-    // const forDisplay = (declareData(data));
+    const forecastW = await getForecast(location);
+    console.log(forecastW);
+    const currentW = await getCurrent(location);
+    console.log(currentW);
+    const airQ = await getAirQ(location);
+    console.log(airQ);
+    const forDisplay = (declareData(forecastW, currentW, airQ));
     // const extra = extraFactory(forDisplay);
-    // console.log(forDisplay);
+    console.log(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline
     const detail = fillDetailContainer(obj);

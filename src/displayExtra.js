@@ -1,4 +1,4 @@
-import createElement from "./utility";
+import { createElement } from "./utility";
 // create display
 const detailContainer = createElement("div", { class: "detailContainer" });
 // const displaySingle = (input) => {
