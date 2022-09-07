@@ -1,5 +1,4 @@
 import { createElement } from "./utility";
-
 //
 const displayMain = (() => {
   const create = (object) => {

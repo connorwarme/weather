@@ -1,5 +1,5 @@
 import "./style.css";
-import { createElement, hourMin, tempFn } from "./utility";
+import { checkTemp, createElement, hourMin, tempFn } from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
 import fillMainContainer from "./displayMain";
 import { sortDays, findHighLow } from "./objFn";
@@ -77,13 +77,12 @@ const apiAction = (() => {
     // then stuff for detailContainer
     // !!! use f to destructure? is that was eslint is going for?
     console.log([forecast, current, air]);
-    const f = forecast.list[0];
-    console.log(f);
     const city = current.name;
     const gps = `${current.coord.lat}, ${current.coord.lon}`;
     const temp = tempFn(current.main.temp);
-    const high = tempFn(tempArray[0]);
-    const low = tempFn(tempArray[1]);
+    const highLow = checkTemp(temp, tempArray[0], tempArray[1]);
+    const high = tempFn(highLow[0]);
+    const low = tempFn(highLow[1]);
     const conditions = forecast.list[0].weather[0].main;
     const description = forecast.list[0].weather[0].description;
     const wind = forecast.list[0].wind;

@@ -38,4 +38,15 @@ const tempFn = (input) => {
     }
     return tempObj;
 }
-export { createElement, tempFn, hourMin, dateFn };
+const checkTemp = (current, high, low) => {
+    let hi = high;
+    let lo = low;
+    if (current > high) {
+        hi = current;
+    }
+    if (current < low) {
+        lo = low;
+    }
+    return [hi, lo];
+}
+export { createElement, tempFn, checkTemp, hourMin, dateFn };
