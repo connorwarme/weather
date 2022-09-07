@@ -1,5 +1,5 @@
 import "./style.css";
-import { createElement, tempFn } from "./utility";
+import { createElement, tempFn, time } from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
 import fillMainContainer from "./displayMain";
 
@@ -88,8 +88,8 @@ const apiAction = (() => {
     const description = forecast.list[0].weather[0].description;
     const wind = forecast.list[0].wind;
     const pop = forecast.list[0].pop;
-    const sunrise = forecast.city.sunrise;
-    const sunset = forecast.city.sunset;
+    const sunrise = time(forecast.city.sunrise);
+    const sunset = time(forecast.city.sunset);
     const humidity = forecast.list[0].main.humidity;
     const feelsLike = tempFn(forecast.list[0].main.feels_like);
     const visibility = forecast.list[0].visibility;

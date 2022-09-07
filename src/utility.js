@@ -1,3 +1,5 @@
+import { fromUnixTime } from 'date-fns';
+import { formatInTimeZone, toDate } from 'date-fns-tz';
 // DOM functions
 // helper functions to create DOM element and add attributes
 // is there a more effective/efficient way to do this?!
@@ -14,7 +16,16 @@ const createElement = (type, attributes) => {
 }
 // time -> transform unix to standard
 const time = (input) => {
-    console.log(input);
+    const date = fromUnixTime(input);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const timeDisplay = `${hours}:${minutes}`;
+    console.log(timeDisplay);
+    const parsedDate = toDate(date.toISOString());
+    console.log(parsedDate);
+    const attempt = formatInTimeZone(date, '-360', 'yyyy-MM-dd HH:mm:ss zzz');
+    console.log(attempt);
+    return timeDisplay;
     // needs a few steps
     // 1) find local time (of user)
     // 2) convert unix time to local time
@@ -24,9 +35,9 @@ const time = (input) => {
 // planning to have both in an object
 const tempFn = (input) => {
     const tempObj = {
-        far: Number(input),
+        far: Math.round(Number(input)),
         cel: Math.round((Number(input) - 32) * (5/9)),
     }
     return tempObj;
 }
-export { createElement, tempFn };
+export { createElement, tempFn, time };
