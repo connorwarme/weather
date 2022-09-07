@@ -71,7 +71,7 @@ const apiAction = (() => {
   };
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
   //
-  const declareData = ([forecast, current, air]) => {
+  const declareData = ([forecast, current, air], tempArray) => {
     // !!! need to confirm current data, find airq, and think thru what else should be included
     // city, country, current temp, high, low, current conditions & descrrption, current weather icon?,
     // then stuff for detailContainer
@@ -82,9 +82,8 @@ const apiAction = (() => {
     const city = current.name;
     const gps = `${current.coord.lat}, ${current.coord.lon}`;
     const temp = tempFn(current.main.temp);
-    // !!! needs edit (and add to return)
-    // const high = tempFn();
-    // const low = tempFn();
+    const high = tempFn(tempArray[0]);
+    const low = tempFn(tempArray[1]);
     const conditions = forecast.list[0].weather[0].main;
     const description = forecast.list[0].weather[0].description;
     const wind = forecast.list[0].wind;
@@ -102,6 +101,8 @@ const apiAction = (() => {
       city,
       gps,
       temp,
+      high,
+      low,
       conditions,
       description,
       wind,
@@ -122,14 +123,13 @@ const apiAction = (() => {
     const forecastW = await getForecast(location);
     console.log(forecastW);
     const daysF = sortDays(forecastW);
-    console.log(findHighLow(daysF[0]));
-    console.log(findHighLow(daysF[1]));
+    const highLow = findHighLow(daysF[0]);
     const currentW = await getCurrent(location);
     console.log(currentW);
     const airQ = await getAirQ(location);
     console.log(airQ);
     const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
-      const object = declareData(data);
+      const object = declareData(data, highLow);
       const detail = fillDetailContainer(object);
       main.appendChild(detail);
       const current = fillMainContainer(object);
