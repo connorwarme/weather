@@ -8,6 +8,7 @@ module.exports = {
     utility: './src/utility.js',
     extra: './src/displayExtra.js',
     main: './src/displayMain.js',
+    objFn: './src/objFn.js',
   },
   devtool: 'inline-source-map',
   plugins: [

@@ -88,8 +88,9 @@ const apiAction = (() => {
     const description = forecast.list[0].weather[0].description;
     const wind = forecast.list[0].wind;
     const pop = forecast.list[0].pop;
-    const sunrise = time(forecast.city.sunrise);
-    const sunset = time(forecast.city.sunset);
+    const timezone = forecast.city.timezone;
+    const sunrise = time(forecast.city.sunrise, timezone);
+    const sunset = time(forecast.city.sunset, timezone);
     const humidity = forecast.list[0].main.humidity;
     const feelsLike = tempFn(forecast.list[0].main.feels_like);
     const visibility = forecast.list[0].visibility;
@@ -106,6 +107,7 @@ const apiAction = (() => {
       pop,
       sunrise,
       sunset,
+      timezone,
       humidity,
       feelsLike,
       visibility,

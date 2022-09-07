@@ -15,17 +15,25 @@ const createElement = (type, attributes) => {
     return newElement;
 }
 // time -> transform unix to standard
-const time = (input) => {
-    const date = fromUnixTime(input);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const timeDisplay = `${hours}:${minutes}`;
-    console.log(timeDisplay);
-    const parsedDate = toDate(date.toISOString());
-    console.log(parsedDate);
-    const attempt = formatInTimeZone(date, '-360', 'yyyy-MM-dd HH:mm:ss zzz');
-    console.log(attempt);
-    return timeDisplay;
+const time = (input, offset) => {
+    const localDate = fromUnixTime(input);
+    const localOffset = localDate.getTimezoneOffset();
+    console.log(localOffset);
+    localDate.setMinutes(localDate.getMinutes() + localOffset);
+    console.log(localDate);
+    localDate.setMinutes(localDate.getMinutes() + (offset / 60));
+    console.log(localDate);
+    const value = `${localDate.getHours()}:${localDate.getMinutes()}`;
+    return value;
+    // const hours = date.getHours();
+    // const minutes = date.getMinutes();
+    // const timeDisplay = `${hours}:${minutes}`;
+    // console.log(timeDisplay);
+    // const parsedDate = toDate(date.toISOString());
+    // console.log(parsedDate);
+    // const attempt = formatInTimeZone(date, '-360', 'yyyy-MM-dd HH:mm:ss zzz');
+    // console.log(attempt);
+    // return timeDisplay;
     // needs a few steps
     // 1) find local time (of user)
     // 2) convert unix time to local time
