@@ -55,7 +55,11 @@ const detail = (() => {
     return pop;
   };
   const precipFn = (value) => {
-    const precip = helper("ACCUMULATION", `${value}mm in last 3h`);
+    let newVal = 0;
+    if (value !== undefined) {
+      newVal = value;
+    }
+    const precip = helper("ACCUMULATION", `${newVal}mm in last 3h`);
     const label = createElement("div", { class: "precipLabel" });
     label.textContent = "PRECIPITATION";
     // !!! not sure if this works
@@ -99,9 +103,9 @@ const detail = (() => {
 })();
 const fillDetailContainer = (input) => {
   console.log(input);
-  detailContainer.appendChild(detail.windFn(input.wind));
+  detailContainer.appendChild(detail.windFn(input.wind.speed));
   detailContainer.appendChild(detail.visFn(input.visibility));
-  detailContainer.appendChild(detail.feelsFn(input.feelsLike));
+  detailContainer.appendChild(detail.feelsFn(input.feelsLike.far));
   detailContainer.appendChild(detail.humidFn(input.humidity));
   detailContainer.appendChild(detail.popFn(input.pop));
   detailContainer.appendChild(detail.precipFn(input.precip));

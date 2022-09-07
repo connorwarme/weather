@@ -19,7 +19,7 @@ const displayMain = (() => {
     // content
     city.textContent = object.city;
     country.textContent = object.country;
-    tempContainer.textContent = object.temp;
+    tempContainer.textContent = object.temp.far;
     highlowContainer.textContent = object.highlow;
     description.textContent = object.description;
     // append it all together
@@ -27,7 +27,7 @@ const displayMain = (() => {
     locationContainer.appendChild(city);
     locationContainer.appendChild(country);
     mainContainer.appendChild(tempContainer);
-    mainContainer.appendChild(highlowContainer);
+    // mainContainer.appendChild(highlowContainer);
     mainContainer.appendChild(iconContainer);
     iconContainer.appendChild(description);
 

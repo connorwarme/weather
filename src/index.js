@@ -124,18 +124,16 @@ const apiAction = (() => {
     console.log(airQ);
     const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
       const object = declareData(data);
+      const detail = fillDetailContainer(object);
+      main.appendChild(detail);
+      const current = fillMainContainer(object);
+      main.appendChild(current);
       return object;
     }
-
     );
-    console.log(collective);
     // const extra = extraFactory(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline
-    const detail = fillDetailContainer(obj);
-    main.appendChild(detail);
-    const current = fillMainContainer(obj);
-    main.appendChild(current);
   };
   // still need to sort out how to parse data for forecast section
   // for desktop display: a card for each day, which has the values (3h increments) in list style
