@@ -28,7 +28,23 @@ const sortDays = (object) => {
         const value = indexDate.getHours();
         collection[i][value] = (index);
     });
-    console.log(collection);
+    return collection;
+}
+const findHighLow = (object) => {
+    const array = Object.keys(object);
+    let high = object[array[0]].main.temp;
+    let low = object[array[0]].main.temp;
+    for (let i = 0; i < array.length; i += 1) {
+        const temp = object[array[i]].main.temp;
+        console.log(temp);
+        if (temp > high) {
+            high = temp;
+        }
+        if (temp < low) {
+            low = temp;
+        }
+    }
+    return [high, low];
 }
 
-export default sortDays;
+export { sortDays, findHighLow };

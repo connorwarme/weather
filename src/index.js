@@ -2,7 +2,7 @@ import "./style.css";
 import { createElement, hourMin, tempFn } from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
 import fillMainContainer from "./displayMain";
-import sortDays from "./objFn";
+import { sortDays, findHighLow } from "./objFn";
 
 // get main body in DOM
 const body = document.querySelector("body");
@@ -121,7 +121,9 @@ const apiAction = (() => {
   const mainFn = async (location) => {
     const forecastW = await getForecast(location);
     console.log(forecastW);
-    console.log(sortDays(forecastW));
+    const daysF = sortDays(forecastW);
+    console.log(findHighLow(daysF[0]));
+    console.log(findHighLow(daysF[1]));
     const currentW = await getCurrent(location);
     console.log(currentW);
     const airQ = await getAirQ(location);
