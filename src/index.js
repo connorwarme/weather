@@ -1,7 +1,8 @@
 import "./style.css";
-import { createElement, tempFn, time } from "./utility";
+import { createElement, hourMin, tempFn } from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
 import fillMainContainer from "./displayMain";
+import sortDays from "./objFn";
 
 // get main body in DOM
 const body = document.querySelector("body");
@@ -89,8 +90,8 @@ const apiAction = (() => {
     const wind = forecast.list[0].wind;
     const pop = forecast.list[0].pop;
     const timezone = forecast.city.timezone;
-    const sunrise = time(forecast.city.sunrise, timezone);
-    const sunset = time(forecast.city.sunset, timezone);
+    const sunrise = hourMin(forecast.city.sunrise, timezone);
+    const sunset = hourMin(forecast.city.sunset, timezone);
     const humidity = forecast.list[0].main.humidity;
     const feelsLike = tempFn(forecast.list[0].main.feels_like);
     const visibility = forecast.list[0].visibility;
@@ -120,6 +121,7 @@ const apiAction = (() => {
   const mainFn = async (location) => {
     const forecastW = await getForecast(location);
     console.log(forecastW);
+    console.log(sortDays(forecastW));
     const currentW = await getCurrent(location);
     console.log(currentW);
     const airQ = await getAirQ(location);

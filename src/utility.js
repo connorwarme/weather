@@ -19,8 +19,15 @@ const time = (input, offset) => {
     const localOffset = localDate.getTimezoneOffset();
     localDate.setMinutes(localDate.getMinutes() + localOffset);
     localDate.setMinutes(localDate.getMinutes() + (offset / 60));
-    const value = `${localDate.getHours()}:${localDate.getMinutes()}`;
-    return value;
+    return localDate;
+}
+const hourMin = (input, offset) => {
+    const value = time(input, offset);
+    return `${value.getHours()}:${value.getMinutes()}`;
+}
+const dateFn = (input, offset) => {
+    const value = time(input, offset);
+    return value.getDate();
 }
 // temp -> convert F to C
 // planning to have both in an object
@@ -31,4 +38,4 @@ const tempFn = (input) => {
     }
     return tempObj;
 }
-export { createElement, tempFn, time };
+export { createElement, tempFn, hourMin, dateFn };
