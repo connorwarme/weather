@@ -70,15 +70,17 @@ const apiAction = (() => {
   };
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
   //
-  const declareData = (current, forecast, air) => {
+  const declareData = ([forecast, current, air]) => {
     // !!! need to confirm current data, find airq, and think thru what else should be included
     // city, country, current temp, high, low, current conditions & descrrption, current weather icon?,
     // then stuff for detailContainer
     // !!! use f to destructure? is that was eslint is going for?
+    console.log([forecast, current, air]);
     const f = forecast.list[0];
-    const city = current.city.name;
-    const country = current.city.country;
-    const temp = tempFn(current.list[0].main.temp);
+    console.log(f);
+    const city = current.name;
+    const gps = `${current.coord.lat}, ${current.coord.lon}`;
+    const temp = tempFn(current.main.temp);
     // !!! needs edit (and add to return)
     // const high = tempFn();
     // const low = tempFn();
@@ -92,11 +94,11 @@ const apiAction = (() => {
     const feelsLike = tempFn(forecast.list[0].main.feels_like);
     const visibility = forecast.list[0].visibility;
     const precip = forecast.list[0].rain;
-    const airQuality = "need other api";
+    const airQuality = air.list[0].main.aqi;
     const pressure = forecast.list[0].main.pressure;
     return {
       city,
-      country,
+      gps,
       temp,
       conditions,
       description,
@@ -120,9 +122,14 @@ const apiAction = (() => {
     console.log(currentW);
     const airQ = await getAirQ(location);
     console.log(airQ);
-    const forDisplay = (declareData(forecastW, currentW, airQ));
+    const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
+      const object = declareData(data);
+      return object;
+    }
+
+    );
+    console.log(collective);
     // const extra = extraFactory(forDisplay);
-    console.log(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline
     const detail = fillDetailContainer(obj);
