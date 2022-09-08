@@ -1,16 +1,15 @@
-import { createElement, time, tempFn } from "./utility";
+import { createElement, time, timeCheck, tempFn } from "./utility";
 //
 const create = (() => {
     const container = createElement('div', {class: "forecastContainer"});
     
     const makeTime = (object, input) => {
-        const forecastTime = time(input.dt, object.timeZone);
+        const forecastTime = time(input.dt, object.timezone);
         const timeDiv = createElement('div', {class: "timeDiv"});
-        timeDiv.textContent = `${forecastTime}`;
+        timeDiv.textContent = `${timeCheck(forecastTime.getHours())}00`;
         return timeDiv;
     }
     const makeTemp = (forecastObj) => {
-        console.log(forecastObj);
         const theTemp = tempFn(forecastObj.main.temp);
         forecastObj.temp = theTemp;
         const tempDiv = createElement('div', {class: "tempDiv"});
@@ -23,7 +22,7 @@ const create = (() => {
     const makePop = (forecastObj) => {
         const thePop = forecastObj.pop;
         const popDiv = createElement('div', {class: "popDiv"});
-        popDiv.textContent = `${thePop}%`;
+        popDiv.textContent = `${thePop * 100}%`;
         return popDiv;
     }
 
@@ -32,10 +31,10 @@ const create = (() => {
         keys.forEach(index => {
             const block = createElement('div', {class: "forecastBlock"});
             card.appendChild(block);
-            block.appendChild(makeTime(object, index));
+            block.appendChild(makeTime(object, collective[index]));
             block.appendChild(makeTemp(collective[index]));
             // !!! need icon here
-            block.appendChild(makePop(index));
+            block.appendChild(makePop(collective[index]));
         })
     }
     const forecast = (input, object) => {

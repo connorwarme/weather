@@ -21,6 +21,13 @@ const time = (input, offset) => {
     localDate.setMinutes(localDate.getMinutes() + (offset / 60));
     return localDate;
 }
+const timeCheck = (input) => {
+    let checked = input;
+    if (input < 10) {
+        checked = `0${input}`;
+    }
+    return checked;
+}
 const hourMin = (input, offset) => {
     const value = time(input, offset);
     return `${value.getHours()}:${value.getMinutes()}`;
@@ -49,4 +56,4 @@ const checkTemp = (current, high, low) => {
     }
     return [hi, lo];
 }
-export { createElement, tempFn, checkTemp, hourMin, dateFn, time };
+export { createElement, tempFn, checkTemp, hourMin, dateFn, time, timeCheck };
