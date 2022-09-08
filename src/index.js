@@ -3,6 +3,7 @@ import { checkTemp, createElement, hourMin, tempFn } from "./utility";
 import { obj, fillDetailContainer } from "./displayExtra";
 import fillMainContainer from "./displayMain";
 import { sortDays, findHighLow } from "./objFn";
+import fillForecastContainer from "./displayForecast";
 
 // get main body in DOM
 const body = document.querySelector("body");
@@ -120,22 +121,22 @@ const apiAction = (() => {
 
   const mainFn = async (location) => {
     const forecastW = await getForecast(location);
-    console.log(forecastW);
+    // console.log(forecastW);
     const daysF = sortDays(forecastW);
     const highLow = findHighLow(daysF[0]);
     const currentW = await getCurrent(location);
-    console.log(currentW);
+    // console.log(currentW);
     const airQ = await getAirQ(location);
-    console.log(airQ);
+    // console.log(airQ);
     const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
       const object = declareData(data, highLow);
       const detail = fillDetailContainer(object);
       main.appendChild(detail);
       const current = fillMainContainer(object);
       main.appendChild(current);
-      return object;
-    }
-    );
+      const forecast = fillForecastContainer(daysF, object);
+      main.appendChild(forecast);
+    });
     // const extra = extraFactory(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline
