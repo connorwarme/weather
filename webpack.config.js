@@ -9,6 +9,7 @@ module.exports = {
     extra: './src/displayExtra.js',
     main: './src/displayMain.js',
     objFn: './src/objFn.js',
+    forecast: './src/displayForecast.js',
   },
   devtool: 'inline-source-map',
   plugins: [

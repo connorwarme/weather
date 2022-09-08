@@ -49,4 +49,4 @@ const checkTemp = (current, high, low) => {
     }
     return [hi, lo];
 }
-export { createElement, tempFn, checkTemp, hourMin, dateFn };
+export { createElement, tempFn, checkTemp, hourMin, dateFn, time };
