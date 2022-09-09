@@ -148,19 +148,19 @@ const apiAction = (() => {
     const high = tempFn(highLow[0]);
     const low = tempFn(highLow[1]);
     const conditions = current.weather[0].main;
-    const description = current.weather[0].description;
-    const icon = current.weather[0].icon;
-    const wind = forecast.list[0].wind;
-    const pop = forecast.list[0].pop;
-    const timezone = forecast.city.timezone;
+    const { description } = current.weather[0];
+    const { icon } = current.weather[0];
+    const { wind } = forecast.list[0];
+    const { pop } = forecast.list[0];
+    const { timezone } = forecast.city;
     const sunrise = hourMin(forecast.city.sunrise, timezone);
     const sunset = hourMin(forecast.city.sunset, timezone);
-    const humidity = forecast.list[0].main.humidity;
+    const { humidity } = forecast.list[0].main;
     const feelsLike = tempFn(forecast.list[0].main.feels_like);
-    const visibility = forecast.list[0].visibility;
+    const { visibility } = forecast.list[0];
     const precip = forecast.list[0].rain;
     const airQuality = air.list[0].main.aqi;
-    const pressure = forecast.list[0].main.pressure;
+    const { pressure } = forecast.list[0].main;
     return {
       city,
       gps,
