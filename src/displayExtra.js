@@ -26,8 +26,11 @@ const detail = (() => {
     const humid = helper("HUMIDITY", `${value}%`);
     return humid;
   };
-  const feelsFn = (value) => {
-    const feels = helper("FEELS LIKE", `${value}`);
+  const feelsFn = (specific, value) => {
+    const feels = helper("FEELS LIKE", "");
+    const feelsDiv = createElement("div", {id: "temp", class: `${value.feelsLike.far} ${value.feelsLike.cel}`});
+    feelsDiv.textContent = `${specific}`;
+    feels.children[1].appendChild(feelsDiv);
     return feels;
   };
   const popFn = (value) => {
@@ -91,7 +94,7 @@ const fillDetailContainer = (input, boolean) => {
   const tempUnit = whatTemp(boolean);
   detailContainer.appendChild(detail.windFn(input.wind.speed));
   detailContainer.appendChild(detail.visFn(input.visibility));
-  detailContainer.appendChild(detail.feelsFn(input.feelsLike[tempUnit]));
+  detailContainer.appendChild(detail.feelsFn(input.feelsLike[tempUnit], input));
   detailContainer.appendChild(detail.humidFn(input.humidity));
   detailContainer.appendChild(detail.popFn(input.pop));
   detailContainer.appendChild(detail.precipFn(input.precip));

@@ -13,9 +13,11 @@ const create = (() => {
         const theTemp = tempFn(forecastObj.main.temp);
         const tempUnit = whatTemp(boolean);
         // forecastObj.temp = theTemp;
-        const tempDiv = createElement('div', {class: "tempDiv"});
+        const tempContainer = createElement('div', {class: "tempDiv"})
+        const tempDiv = createElement('div', {id: "temp", class: `${forecastObj.main.temp.far} ${forecastObj.main.temp.cel}`});
         tempDiv.textContent = `${theTemp[tempUnit]}`;
-        return tempDiv;
+        tempContainer.appendChild(tempDiv);
+        return tempContainer;
     }
     const makeIcon = (forecastObj) => {
         const iconDiv = createElement('div', {class: "forecastIconContainer"});
