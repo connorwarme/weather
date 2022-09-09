@@ -52,7 +52,7 @@ main.appendChild(inputContainer);
 const submitFn = () => {
   const userInput = inputField.value;
   // needs edit
-  apiAction.mainFn(userInput);
+  apiAction.mainFn(userInput, tempUnit);
   inputField.value = "";
 };
 submitBtn.addEventListener("click", () => {
@@ -172,7 +172,7 @@ const apiAction = (() => {
     };
   };
 
-  const mainFn = async (location) => {
+  const mainFn = async (location, boolean) => {
     try {
     const forecastW = await getForecast(location);
     if (errorCheck(forecastW)) {
@@ -186,11 +186,11 @@ const apiAction = (() => {
         const object = declareData(data, highLow);
         console.log(object);
         clearMain();
-        const detail = fillDetailContainer(object);
+        const detail = fillDetailContainer(object, boolean);
         main.appendChild(detail);
-        const current = fillMainContainer(object);
+        const current = fillMainContainer(object, boolean);
         main.appendChild(current);
-        const forecast = fillForecastContainer(daysF, object);
+        const forecast = fillForecastContainer(daysF, object, boolean);
         main.appendChild(forecast);
       })
     } else {

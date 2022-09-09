@@ -1,4 +1,4 @@
-import { createElement } from "./utility";
+import { createElement, whatTemp } from "./utility";
 // create display
 const detailContainer = createElement("div", { class: "detailContainer" });
 const detail = (() => {
@@ -87,11 +87,11 @@ const detail = (() => {
     sunsetFn,
   };
 })();
-const fillDetailContainer = (input) => {
-  console.log(input);
+const fillDetailContainer = (input, boolean) => {
+  const tempUnit = whatTemp(boolean);
   detailContainer.appendChild(detail.windFn(input.wind.speed));
   detailContainer.appendChild(detail.visFn(input.visibility));
-  detailContainer.appendChild(detail.feelsFn(input.feelsLike.far));
+  detailContainer.appendChild(detail.feelsFn(input.feelsLike[tempUnit]));
   detailContainer.appendChild(detail.humidFn(input.humidity));
   detailContainer.appendChild(detail.popFn(input.pop));
   detailContainer.appendChild(detail.precipFn(input.precip));

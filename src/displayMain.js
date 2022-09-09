@@ -1,7 +1,7 @@
-import { createElement } from "./utility";
+import { createElement, whatTemp } from "./utility";
 //
 const displayMain = (() => {
-  const create = (object) => {
+  const create = (object, boolean) => {
     const mainContainer = createElement("div", { class: "mainContainer" });
     const locationContainer = createElement("div", {
       class: "locationContainer",
@@ -19,10 +19,11 @@ const displayMain = (() => {
     const description = createElement("div", { class: "mainDescription" });
     // !!! don't know if I should display icon image BELOW other data, or as backdrop of the mainContainer
     // content
+    const tempUnit = whatTemp(boolean);
     city.textContent = object.city;
     country.textContent = object.country;
-    tempContainer.textContent = object.temp.far;
-    highlowContainer.textContent = `High: ${object.high.far} / Low: ${object.low.far}`;
+    tempContainer.textContent = object.temp[tempUnit];
+    highlowContainer.textContent = `High: ${object.high[tempUnit]} / Low: ${object.low[tempUnit]}`;
     description.textContent = object.conditions;
     // append it all together
     mainContainer.appendChild(locationContainer);
@@ -38,8 +39,8 @@ const displayMain = (() => {
   };
   return { create };
 })();
-const fillMainContainer = (object) => {
-  const main = displayMain.create(object);
+const fillMainContainer = (object, boolean) => {
+  const main = displayMain.create(object, boolean);
   return main;
 };
 export default fillMainContainer;

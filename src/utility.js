@@ -54,6 +54,16 @@ const tempFn = (input) => {
     }
     return tempObj;
 }
+// display C or F?
+const whatTemp = (boolean) => {
+    let value = "cel";
+    if (boolean === false) {
+        value = "far";
+    }
+    return value;
+}
+// debug: sometimes current temp is higher or lower than forecast high/low
+// this check fn fixes it
 const checkTemp = (current, high, low) => {
     let hi = high;
     let lo = low;
@@ -65,4 +75,4 @@ const checkTemp = (current, high, low) => {
     }
     return [hi, lo];
 }
-export { createElement, tempFn, checkTemp, hourMin, dateFn, time, timeCheck };
+export { createElement, tempFn, whatTemp, checkTemp, hourMin, dateFn, time, timeCheck };

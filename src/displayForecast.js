@@ -1,4 +1,4 @@
-import { createElement, time, timeCheck, tempFn } from "./utility";
+import { createElement, time, timeCheck, tempFn, whatTemp } from "./utility";
 //
 const create = (() => {
     const container = createElement('div', {class: "forecastContainer"});
@@ -9,11 +9,12 @@ const create = (() => {
         timeDiv.textContent = `${timeCheck(forecastTime.getHours())}00`;
         return timeDiv;
     }
-    const makeTemp = (forecastObj) => {
+    const makeTemp = (forecastObj, boolean) => {
         const theTemp = tempFn(forecastObj.main.temp);
-        forecastObj.temp = theTemp;
+        const tempUnit = whatTemp(boolean);
+        // forecastObj.temp = theTemp;
         const tempDiv = createElement('div', {class: "tempDiv"});
-        tempDiv.textContent = `${theTemp.far}`;
+        tempDiv.textContent = `${theTemp[tempUnit]}`;
         return tempDiv;
     }
     const makeIcon = (forecastObj) => {
@@ -31,19 +32,19 @@ const create = (() => {
         return popDiv;
     }
 
-    const makeCard = (object, collective, card) => {
+    const makeCard = (object, collective, card, boolean) => {
         const keys = Object.keys(collective);
         keys.forEach(index => {
             const block = createElement('div', {class: "forecastBlock"});
             card.appendChild(block);
             block.appendChild(makeTime(object, collective[index]));
-            block.appendChild(makeTemp(collective[index]));
+            block.appendChild(makeTemp(collective[index], boolean));
             // !!! need icon here
             block.appendChild(makeIcon(collective[index]));
             block.appendChild(makePop(collective[index]));
         })
     }
-    const forecast = (input, object) => {
+    const forecast = (input, object, boolean) => {
         const length = Object.keys(input).length;
         const array = [];
         for (let i = 0; i < length; i += 1) {
@@ -52,7 +53,7 @@ const create = (() => {
         let i = 0;
         array.forEach(index => {
             const card = createElement('div', {class: `card${i}`});
-            makeCard(object, index, card);
+            makeCard(object, index, card, boolean);
             container.appendChild(card);
             i += 1;
         })
@@ -60,10 +61,10 @@ const create = (() => {
     }
     return { forecast }
 })();
-const fillForecastContainer = (input, object) => {
+const fillForecastContainer = (input, object, boolean) => {
     console.log(input);
     console.log(object);
-    const forecastDiv = create.forecast(input, object);
+    const forecastDiv = create.forecast(input, object, boolean);
     return forecastDiv;
 }
 export default fillForecastContainer;
