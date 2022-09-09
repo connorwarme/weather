@@ -19,13 +19,7 @@ const displayMain = (() => {
     city.textContent = object.city;
     country.textContent = object.country;
     tempContainer.textContent = object.temp.far;
-    let highTemp = "";
-    if (object.temp.far > object.high.far) {
-      highTemp = object.temp.far;
-    } else {
-      highTemp = object.high.far;
-    }
-    highlowContainer.textContent = `High: ${highTemp} / Low: ${object.low.far}`;
+    highlowContainer.textContent = `High: ${object.high.far} / Low: ${object.low.far}`;
     description.textContent = object.description;
     // append it all together
     mainContainer.appendChild(locationContainer);
