@@ -37,6 +37,19 @@ submitBtn.addEventListener("click", () => {
   submitFn();
 });
 //
+const clearMain = () => {
+  console.log(main.children.length);
+  for (let i = 1; i < main.children.length; i += 0) {
+    console.log(main.children[0].nextElementSibling);
+    clearAll(main.children[0].nextElementSibling);
+    main.removeChild(main.children[0].nextElementSibling);
+  }
+}
+const clearAll = (input) => {
+  while (input.firstChild) {
+    input.removeChild(input.firstChild);
+  }
+}
 // figure out how to fetch x3: current, forecast, and airquality
 // easier to keep them seperate?
 const apiAction = (() => {
@@ -85,7 +98,6 @@ const apiAction = (() => {
   }
   const decipherError = (input) => {
     const container = document.querySelector('div.inputContainer');
-    const error = input.message;
     if (input.cod === "404") {
       const errorDisplay = createElement('div', {class: "errorDisplay"});
       errorDisplay.textContent = "Location not found!";
@@ -106,8 +118,9 @@ const apiAction = (() => {
     const highLow = checkTemp(temp, tempArray[0], tempArray[1]);
     const high = tempFn(highLow[0]);
     const low = tempFn(highLow[1]);
-    const conditions = forecast.list[0].weather[0].main;
-    const description = forecast.list[0].weather[0].description;
+    const conditions = current.weather[0].main;
+    const description = current.weather[0].description;
+    const icon = current.weather[0].icon;
     const wind = forecast.list[0].wind;
     const pop = forecast.list[0].pop;
     const timezone = forecast.city.timezone;
@@ -127,6 +140,7 @@ const apiAction = (() => {
       low,
       conditions,
       description,
+      icon,
       wind,
       pop,
       sunrise,
@@ -153,6 +167,8 @@ const apiAction = (() => {
       // console.log(airQ);
       const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
         const object = declareData(data, highLow);
+        console.log(object);
+        clearMain();
         const detail = fillDetailContainer(object);
         main.appendChild(detail);
         const current = fillMainContainer(object);

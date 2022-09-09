@@ -13,6 +13,9 @@ const displayMain = (() => {
       class: "highlowContainer",
     });
     const iconContainer = createElement("div", { class: "iconContainer" });
+    const icon = createElement("img", {class: "mainWeatherIcon", "aria-label": "Weather Icon"});
+    icon.src = `http://openweathermap.org/img/wn/${object.icon}@4x.png`;
+    icon.alt = `${object.description}`;
     const description = createElement("div", { class: "mainDescription" });
     // !!! don't know if I should display icon image BELOW other data, or as backdrop of the mainContainer
     // content
@@ -20,7 +23,7 @@ const displayMain = (() => {
     country.textContent = object.country;
     tempContainer.textContent = object.temp.far;
     highlowContainer.textContent = `High: ${object.high.far} / Low: ${object.low.far}`;
-    description.textContent = object.description;
+    description.textContent = object.conditions;
     // append it all together
     mainContainer.appendChild(locationContainer);
     locationContainer.appendChild(city);
@@ -28,6 +31,7 @@ const displayMain = (() => {
     mainContainer.appendChild(tempContainer);
     mainContainer.appendChild(highlowContainer);
     mainContainer.appendChild(iconContainer);
+    iconContainer.appendChild(icon);
     iconContainer.appendChild(description);
 
     return mainContainer;

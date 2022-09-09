@@ -16,8 +16,13 @@ const create = (() => {
         tempDiv.textContent = `${theTemp.far}`;
         return tempDiv;
     }
-    const makeIcon = () => {
-        // !!! need to figure out how to do icons
+    const makeIcon = (forecastObj) => {
+        const iconDiv = createElement('div', {class: "forecastIconContainer"});
+        const icon = createElement('img', {class: "forecastIcon", "aria-label": "Forecast Icon", title: `${forecastObj.weather[0].description}`});
+        icon.src = `http://openweathermap.org/img/wn/${forecastObj.weather[0].icon}@2x.png`;
+        icon.alt = forecastObj.weather[0].main;
+        iconDiv.appendChild(icon);
+        return iconDiv;
     }
     const makePop = (forecastObj) => {
         const thePop = forecastObj.pop;
@@ -34,6 +39,7 @@ const create = (() => {
             block.appendChild(makeTime(object, collective[index]));
             block.appendChild(makeTemp(collective[index]));
             // !!! need icon here
+            block.appendChild(makeIcon(collective[index]));
             block.appendChild(makePop(collective[index]));
         })
     }
