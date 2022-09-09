@@ -60,9 +60,9 @@ const apiAction = (() => {
     const currentData = await currentFetch.json();
     return currentData;
   };
-  const getAirQ = async (location) => {
+  const getAirQ = async (lat, lon) => {
     const airFetch = await fetch(
-      `http://api.openweathermap.org/data/2.5/air_pollution?lat=40.39&lon=-105.07&appid=${currentValue}`,
+      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${currentValue}`,
       {
         mode: "cors",
       }
@@ -70,6 +70,15 @@ const apiAction = (() => {
     const airData = await airFetch.json();
     return airData;
   };
+  const errorCheck = (input) => {
+    let send = "";
+    if (input.cod !== "200") {
+      send = false;
+    } else {
+      send = true;
+    }
+    return send;
+  }
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
   //
   const declareData = ([forecast, current, air], tempArray) => {
@@ -120,23 +129,32 @@ const apiAction = (() => {
   };
 
   const mainFn = async (location) => {
+    try {
     const forecastW = await getForecast(location);
-    // console.log(forecastW);
-    const daysF = sortDays(forecastW);
-    const highLow = findHighLow(daysF[0]);
-    const currentW = await getCurrent(location);
-    // console.log(currentW);
-    const airQ = await getAirQ(location);
-    // console.log(airQ);
-    const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
-      const object = declareData(data, highLow);
-      const detail = fillDetailContainer(object);
-      main.appendChild(detail);
-      const current = fillMainContainer(object);
-      main.appendChild(current);
-      const forecast = fillForecastContainer(daysF, object);
-      main.appendChild(forecast);
-    });
+    if (errorCheck(forecastW)) {
+      const daysF = sortDays(forecastW);
+      const highLow = findHighLow(daysF[0]);
+      const currentW = await getCurrent(location);
+      // console.log(currentW);
+      const airQ = await getAirQ(forecastW.city.coord.lat, forecastW.city.coord.lon);
+      // console.log(airQ);
+      const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
+        const object = declareData(data, highLow);
+        const detail = fillDetailContainer(object);
+        main.appendChild(detail);
+        const current = fillMainContainer(object);
+        main.appendChild(current);
+        const forecast = fillForecastContainer(daysF, object);
+        main.appendChild(forecast);
+      })
+    } else {
+      alert('The site experienced an error, check the console log for details');
+      console.log(forecastW.message);
+    }
+    } catch (error) {
+      alert('The site experienced an error, check the console log for details');
+      console.log(error);
+    }
     // const extra = extraFactory(forDisplay);
     // main.appendChild(extra);
     // !!! need to remove, just for work while offline

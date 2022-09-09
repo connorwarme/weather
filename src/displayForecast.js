@@ -39,14 +39,12 @@ const create = (() => {
     }
     const forecast = (input, object) => {
         const length = Object.keys(input).length;
-        let array = [];
+        const array = [];
         for (let i = 0; i < length; i += 1) {
             array[i] = input[i];
         }
-        console.log(array);
         let i = 0;
         array.forEach(index => {
-            console.log(index);
             const card = createElement('div', {class: `card${i}`});
             makeCard(object, index, card);
             container.appendChild(card);
