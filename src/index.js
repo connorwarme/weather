@@ -74,10 +74,21 @@ const apiAction = (() => {
     let send = "";
     if (input.cod !== "200") {
       send = false;
+      decipherError(input);
     } else {
       send = true;
     }
     return send;
+  }
+  const decipherError = (input) => {
+    const container = document.querySelector('div.inputContainer');
+    const error = input.message;
+    if (input.cod === "404") {
+      const errorDisplay = createElement('div', {class: "errorDisplay"});
+      errorDisplay.textContent = "Location not found."
+      // !!! update placeholder text in searchbar: Enter "City", "City, State" or "City, Country"
+      container.appendChild(errorDisplay);
+    }
   }
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
   //
@@ -152,8 +163,9 @@ const apiAction = (() => {
       console.log(forecastW.message);
     }
     } catch (error) {
-      alert('The site experienced an error, check the console log for details');
+      alert('The site experienced an error, check the log for details.');
       console.log(error);
+
     }
     // const extra = extraFactory(forDisplay);
     // main.appendChild(extra);

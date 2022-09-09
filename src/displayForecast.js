@@ -22,7 +22,7 @@ const create = (() => {
     const makePop = (forecastObj) => {
         const thePop = forecastObj.pop;
         const popDiv = createElement('div', {class: "popDiv"});
-        popDiv.textContent = `${thePop * 100}%`;
+        popDiv.textContent = `${Math.round(thePop * 100)}%`;
         return popDiv;
     }
 

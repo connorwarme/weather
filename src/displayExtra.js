@@ -47,7 +47,7 @@ const detail = (() => {
     return feels;
   };
   const popFn = (value) => {
-    const pop = helper("PRECIPITATION", `${value * 100}%`);
+    const pop = helper("PRECIPITATION", `${Math.round(value * 100)}%`);
     const label = createElement("div", { class: "popLabel" });
     label.textContent = "CHANCE OF";
     // !!! not sure if this works
@@ -59,7 +59,7 @@ const detail = (() => {
     if (value !== undefined) {
       newVal = value;
     }
-    const precip = helper("ACCUMULATION", `${newVal}mm in last 3h`);
+    const precip = helper("ACCUMULATION", `${newVal['3h']}mm in last 3h`);
     const label = createElement("div", { class: "precipLabel" });
     label.textContent = "PRECIPITATION";
     // !!! not sure if this works
