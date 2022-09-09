@@ -55,7 +55,9 @@ const detail = (() => {
     return pop;
   };
   const precipFn = (value) => {
-    let newVal = 0;
+    let newVal = {
+      '3h': 0,
+    };
     if (value !== undefined) {
       newVal = value;
     }
