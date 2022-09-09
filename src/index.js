@@ -14,12 +14,15 @@ const inputContainer = createElement("div", { class: "inputContainer" });
 const inputField = createElement("input", {
   class: "inputField",
   id: "inputField",
+  "aria-label": "Input Location",
+  title: "Format as: 'City', 'City, State', OR 'City, Country'",
+  "placeholder": "Search location...",
 });
 const submitBtn = createElement("button", {
   class: "submitBtn",
   "aria-label": "Submit",
 });
-submitBtn.textContent = "Submit";
+submitBtn.textContent = "Search";
 inputContainer.appendChild(inputField);
 inputContainer.appendChild(submitBtn);
 main.appendChild(inputContainer);
@@ -85,8 +88,7 @@ const apiAction = (() => {
     const error = input.message;
     if (input.cod === "404") {
       const errorDisplay = createElement('div', {class: "errorDisplay"});
-      errorDisplay.textContent = "Location not found."
-      // !!! update placeholder text in searchbar: Enter "City", "City, State" or "City, Country"
+      errorDisplay.textContent = "Location not found!";
       container.appendChild(errorDisplay);
     }
   }
@@ -159,17 +161,14 @@ const apiAction = (() => {
         main.appendChild(forecast);
       })
     } else {
-      alert('The site experienced an error, check the console log for details');
-      console.log(forecastW.message);
+      console.log(`Apologies! The site experienced an error: "${forecastW.message}".`);
     }
     } catch (error) {
-      alert('The site experienced an error, check the log for details.');
+      alert('Apologies! The site experienced an error, check the log for details.');
       console.log(error);
-
     }
     // const extra = extraFactory(forDisplay);
     // main.appendChild(extra);
-    // !!! need to remove, just for work while offline
   };
   // still need to sort out how to parse data for forecast section
   // for desktop display: a card for each day, which has the values (3h increments) in list style
