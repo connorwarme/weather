@@ -104,6 +104,11 @@ const apiAction = (() => {
       container.appendChild(errorDisplay);
     }
   }
+  const checkNumber = (input) => {
+    if (input < 10) {
+      return `0${input}`;
+    }
+  }
   // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
   //
   const declareData = ([forecast, current, air], tempArray) => {

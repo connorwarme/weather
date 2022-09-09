@@ -28,9 +28,18 @@ const timeCheck = (input) => {
     }
     return checked;
 }
+const checkNumber = (input) => {
+    let value = input;
+    if (input < 10) {
+      value = `0${input}`;
+    } 
+    return value;
+}
 const hourMin = (input, offset) => {
     const value = time(input, offset);
-    return `${value.getHours()}:${value.getMinutes()}`;
+    const hours = checkNumber(value.getHours());
+    const minutes = checkNumber(value.getMinutes())
+    return `${hours}:${minutes}`;
 }
 const dateFn = (input, offset) => {
     const value = time(input, offset);
