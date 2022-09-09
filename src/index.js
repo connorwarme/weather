@@ -37,6 +37,11 @@ submitBtn.addEventListener("click", () => {
   submitFn();
 });
 //
+const clearAll = (input) => {
+  while (input.firstChild) {
+    input.removeChild(input.firstChild);
+  }
+}
 const clearMain = () => {
   console.log(main.children.length);
   for (let i = 1; i < main.children.length; i += 0) {
@@ -45,13 +50,8 @@ const clearMain = () => {
     main.removeChild(main.children[0].nextElementSibling);
   }
 }
-const clearAll = (input) => {
-  while (input.firstChild) {
-    input.removeChild(input.firstChild);
-  }
-}
-// figure out how to fetch x3: current, forecast, and airquality
-// easier to keep them seperate?
+// fetch x3: current, forecast, and airquality
+// easier to keep them separate?
 const apiAction = (() => {
   const currentValue = "917a17f77a60ae96ee081212e94e3f75";
   const getForecast = async (location) => {
@@ -86,6 +86,14 @@ const apiAction = (() => {
     const airData = await airFetch.json();
     return airData;
   };
+  const decipherError = (input) => {
+    const container = document.querySelector('div.inputContainer');
+    if (input.cod === "404") {
+      const errorDisplay = createElement('div', {class: "errorDisplay"});
+      errorDisplay.textContent = "Location not found!";
+      container.appendChild(errorDisplay);
+    }
+  }
   const errorCheck = (input) => {
     let send = "";
     if (input.cod !== "200") {
@@ -96,26 +104,8 @@ const apiAction = (() => {
     }
     return send;
   }
-  const decipherError = (input) => {
-    const container = document.querySelector('div.inputContainer');
-    if (input.cod === "404") {
-      const errorDisplay = createElement('div', {class: "errorDisplay"});
-      errorDisplay.textContent = "Location not found!";
-      container.appendChild(errorDisplay);
-    }
-  }
-  const checkNumber = (input) => {
-    if (input < 10) {
-      return `0${input}`;
-    }
-  }
-  // get all the datas - thinking an array with 3 obj: [{current}, {forecast}, {airq}]
-  //
+  // get all the data into an object
   const declareData = ([forecast, current, air], tempArray) => {
-    // !!! need to confirm current data, find airq, and think thru what else should be included
-    // city, country, current temp, high, low, current conditions & descrrption, current weather icon?,
-    // then stuff for detailContainer
-    // !!! use f to destructure? is that was eslint is going for?
     console.log([forecast, current, air]);
     const city = current.name;
     const gps = `${current.coord.lat}, ${current.coord.lon}`;
@@ -188,8 +178,6 @@ const apiAction = (() => {
       alert('Apologies! The site experienced an error, check the log for details.');
       console.log(error);
     }
-    // const extra = extraFactory(forDisplay);
-    // main.appendChild(extra);
   };
   // still need to sort out how to parse data for forecast section
   // for desktop display: a card for each day, which has the values (3h increments) in list style
