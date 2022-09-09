@@ -23,8 +23,30 @@ const submitBtn = createElement("button", {
   "aria-label": "Submit",
 });
 submitBtn.textContent = "Search";
+// make temp toggle
+const tempBtnContainer = createElement('div', {class: "tempBtnContainer"});
+const tempToggle = createElement('div', {class: "tempToggle"});
+let tempUnit = false;
+tempToggle.textContent = `°F`;
+tempBtnContainer.appendChild(tempToggle);
+// toggle function
+const toggleFn = () => {
+  console.log(tempUnit);
+  if (!tempUnit) {
+    tempToggle.textContent = `°C`;
+  } else {
+    tempToggle.textContent = `°F`;
+  }
+  tempUnit = !tempUnit;
+  console.log(tempUnit);
+}
+tempToggle.addEventListener('click', () => {
+  toggleFn();
+})
+//
 inputContainer.appendChild(inputField);
 inputContainer.appendChild(submitBtn);
+inputContainer.appendChild(tempBtnContainer);
 main.appendChild(inputContainer);
 // submit listener function
 const submitFn = () => {
