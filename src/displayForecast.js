@@ -12,9 +12,8 @@ const create = (() => {
     const makeTemp = (forecastObj, boolean) => {
         const theTemp = tempFn(forecastObj.main.temp);
         const tempUnit = whatTemp(boolean);
-        // forecastObj.temp = theTemp;
         const tempContainer = createElement('div', {class: "tempDiv"})
-        const tempDiv = createElement('div', {id: "temp", class: `${forecastObj.main.temp.far} ${forecastObj.main.temp.cel}`});
+        const tempDiv = createElement('div', {id: "temp", class: `${theTemp.far} ${theTemp.cel}`});
         tempDiv.textContent = `${theTemp[tempUnit]}`;
         tempContainer.appendChild(tempDiv);
         return tempContainer;

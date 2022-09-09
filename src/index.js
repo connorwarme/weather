@@ -29,13 +29,25 @@ const tempToggle = createElement('div', {class: "tempToggle"});
 let tempUnit = false;
 tempToggle.textContent = `°F`;
 tempBtnContainer.appendChild(tempToggle);
+// toggle on page
+const toggleDisplayUnits = (i) => {
+  const array = Array.from(document.querySelectorAll('div#temp'));
+  console.log(array);
+  if (array !== undefined) {
+    array.forEach(index => {
+      const options = Array.from(index.classList);
+      index.textContent = options[i];
+    })
+}}
 // toggle function
 const toggleFn = () => {
   console.log(tempUnit);
   if (!tempUnit) {
     tempToggle.textContent = `°C`;
+    toggleDisplayUnits(1);
   } else {
     tempToggle.textContent = `°F`;
+    toggleDisplayUnits(0);
   }
   tempUnit = !tempUnit;
   console.log(tempUnit);

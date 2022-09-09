@@ -9,12 +9,12 @@ const displayMain = (() => {
     const city = createElement("div", { class: "mainCity" });
     const country = createElement("div", { class: "mainCountry" });
     const tempContainer = createElement("div", { class: "mainTempContainer" });
-    const tempDiv = createElement("span", {id: "temp", class: `${object.temp.far} ${object.temp.cel}`});
+    const tempDiv = createElement("div", {id: "temp", class: `${object.temp.far} ${object.temp.cel}`});
     const highlowContainer = createElement("div", {
       class: "highlowContainer",
     });
-    const highDiv = createElement("span", {id: "temp", class: `${object.high.far} ${object.high.cel}`});
-    const lowDiv = createElement("span", {id: "temp", class: `${object.low.far} ${object.low.cel}`});
+    const highDiv = createElement("div", {id: "temp", class: `${object.high.far} ${object.high.cel}`});
+    const lowDiv = createElement("div", {id: "temp", class: `${object.low.far} ${object.low.cel}`});
     const iconContainer = createElement("div", { class: "iconContainer" });
     const icon = createElement("img", {class: "mainWeatherIcon", "aria-label": "Weather Icon"});
     icon.src = `http://openweathermap.org/img/wn/${object.icon}@4x.png`;
@@ -25,9 +25,9 @@ const displayMain = (() => {
     const tempUnit = whatTemp(boolean);
     city.textContent = object.city;
     country.textContent = object.country;
-    tempSpan.textContent = object.temp[tempUnit];
-    highSpan.textContent = `${object.high[tempUnit]}`;
-    lowSpan.textContent = `${object.low[tempUnit]}`;
+    tempDiv.textContent = object.temp[tempUnit];
+    highDiv.textContent = `${object.high[tempUnit]}`;
+    lowDiv.textContent = `${object.low[tempUnit]}`;
     description.textContent = object.conditions;
     // append it all together
     mainContainer.appendChild(locationContainer);
