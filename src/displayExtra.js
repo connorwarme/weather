@@ -1,5 +1,5 @@
 import { createElement, whatTemp } from "./utility";
-import Icon from './icons/arrow.png';
+import Icon from './icons/arrow.svg';
 // create display
 const detailContainer = createElement("div", { class: "detailContainer" });
 const detail = (() => {

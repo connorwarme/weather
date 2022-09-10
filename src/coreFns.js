@@ -103,7 +103,8 @@ const apiAction = (() => {
         pressure,
       };
     };
-    // DOM
+    // DOM: clear currently displayed data, in order to display new data
+    // needed here, so it can run in the main event (below)
     const clearAll = (input) => {
         while (input.firstChild) {
           input.removeChild(input.firstChild);
