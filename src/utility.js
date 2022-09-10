@@ -75,11 +75,4 @@ const checkTemp = (current, high, low) => {
     }
     return [hi, lo];
 }
-const checkValue = (input) => {
-    let value = input;
-    if (value === undefined) {
-        value = "";
-    }
-    return checkValue;
-}
-export { createElement, tempFn, whatTemp, checkTemp, hourMin, dateFn, time, timeCheck, checkValue };
+export { createElement, tempFn, whatTemp, checkTemp, hourMin, dateFn, time, timeCheck };
