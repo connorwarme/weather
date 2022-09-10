@@ -1,4 +1,5 @@
 import { createElement, whatTemp } from "./utility";
+import Icon from './icons/arrow.png';
 // create display
 const detailContainer = createElement("div", { class: "detailContainer" });
 const detail = (() => {
@@ -14,12 +15,17 @@ const detail = (() => {
   };
   const windFn = (value) => {
     // !!! might need a few things - one for wind speed, another for direction
-    const wind = helper("WIND", `${value} kmh`);
-    // check units
+    const wind = helper("WIND", `${value.speed} mph`);
+    const windIcon = createElement('img', {class: "windIcon"});
+    windIcon.src = Icon;
+    windIcon.style.transform = `rotate(${value.deg}deg)`;
+    windIcon.alt = `Wind direction: ${value.deg}`
+    wind.insertBefore(windIcon, wind.children[1])
+    // check units !! yikes
     return wind;
   };
   const visFn = (value) => {
-    const vis = helper("VISIBILITY", `${value / 1000} km`);
+    const vis = helper("VISIBILITY", `${value / 1000} mi`);
     return vis;
   };
   const humidFn = (value) => {
@@ -37,7 +43,6 @@ const detail = (() => {
     const pop = helper("PRECIPITATION", `${Math.round(value * 100)} %`);
     const label = createElement("div", { class: "popLabel" });
     label.textContent = "CHANCE OF";
-    // !!! not sure if this works
     pop.insertBefore(label, pop.firstChild);
     return pop;
   };
@@ -51,28 +56,25 @@ const detail = (() => {
     const precip = helper("ACCUMULATION", `${newVal['3h']}mm in last 3h`);
     const label = createElement("div", { class: "precipLabel" });
     label.textContent = "PRECIPITATION";
-    // !!! not sure if this works
     precip.insertBefore(label, precip.firstChild);
     return precip;
   };
   const airFn = (value) => {
     const air = helper("AIR QUALITY", `${value}`);
     // !!! might need units clarifier (score out of 100?)
+    air.children[1].setAttribute('id', `quality${value}`);
     return air;
   };
   const pressureFn = (value) => {
-    const pressure = helper("PRESSURE", `${value}`);
-    // !!! need units
+    const pressure = helper("PRESSURE", `${value} hPa`);
     return pressure;
   };
   const sunriseFn = (value) => {
-    // !!! need fn to convert value to time (also check for local time..)
     const time = value;
     const rise = helper("SUNRISE", `${time}`);
     return rise;
   };
   const sunsetFn = (value) => {
-    // !!! need to run value in a fn, like above
     const time = value;
     const set = helper("SUNSET", `${time}`);
     return set;
@@ -92,7 +94,7 @@ const detail = (() => {
 })();
 const fillDetailContainer = (input, boolean) => {
   const tempUnit = whatTemp(boolean);
-  detailContainer.appendChild(detail.windFn(input.wind.speed));
+  detailContainer.appendChild(detail.windFn(input.wind));
   detailContainer.appendChild(detail.visFn(input.visibility));
   detailContainer.appendChild(detail.feelsFn(input.feelsLike[tempUnit], input));
   detailContainer.appendChild(detail.humidFn(input.humidity));
