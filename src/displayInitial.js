@@ -1,5 +1,6 @@
 import { createElement } from "./utility";
 import apiAction from "./coreFns";
+import Icon from "./icons/magnify.svg";
 
 const create = (() => {
     // make temp toggle
@@ -41,6 +42,7 @@ const create = (() => {
         const main = createElement("div", { class: "main" });
         // make input field and submit button
         const inputContainer = createElement("div", { class: "inputContainer" });
+        const inputSearchContainer = createElement('div', {class: "inputSearch"});
         const inputField = createElement("input", {
         class: "inputField",
         id: "inputField",
@@ -52,9 +54,13 @@ const create = (() => {
         class: "submitBtn",
         "aria-label": "Submit",
         });
-        submitBtn.textContent = "Search";
-        inputContainer.appendChild(inputField);
-        inputContainer.appendChild(submitBtn);
+        const searchIcon = createElement('img', {class: "searchIcon"});
+        searchIcon.src = Icon;
+        searchIcon.alt = `Search`;
+        inputContainer.appendChild(inputSearchContainer);
+        inputSearchContainer.appendChild(inputField);
+        inputSearchContainer.appendChild(submitBtn);
+        submitBtn.appendChild(searchIcon);
         inputContainer.appendChild(temp());
         main.appendChild(inputContainer);
         return main;
@@ -64,9 +70,9 @@ const create = (() => {
 // 
 const fillSearchContainer = () => {
     const main = create.initial();
-    const inputField = main.children[0].children[0];
-    const searchBtn = main.children[0].children[1];
-    const tempToggle = main.children[0].children[2];
+    const inputField = main.children[0].children[0].children[0];
+    const searchBtn = main.children[0].children[0].children[1];
+    const tempToggle = main.children[0].children[1];
 
     // add listeners
     searchBtn.addEventListener("click", () => {

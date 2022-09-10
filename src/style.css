@@ -7,11 +7,34 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 5fr;
-}.inputContainer {
+    height: 100vh;
+    width: 100vw;
+}
+.inputContainer {
     grid-column: 1/3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    /* justify-content: center;
+    align-items: center; */
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.inputSearch {
+    grid-column: 2/3;
+}
+.inputField {
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.submitBtn {
+    height: 50px;
+}
+.searchIcon {
+    height: 50px;
+}
+.tempBtnContainer {
+    grid-column: 3/4;
 }
 .mainContainer {
     grid-row: 2/3;
