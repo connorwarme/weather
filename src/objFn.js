@@ -1,9 +1,5 @@
-import { createElement, dateFn } from "./utility";
 
 // functions to run on the data, give obj proper values
-// const actions = (() => {
-//     const sortDays = (input)
-// })();
 const returnDate = (object, item) => {
     const day = item.dt_txt;
     const date = new Date(day);
@@ -35,7 +31,7 @@ const findHighLow = (object) => {
     let high = object[array[0]].main.temp;
     let low = object[array[0]].main.temp;
     for (let i = 0; i < array.length; i += 1) {
-        const temp = object[array[i]].main.temp;
+        const {temp} = object[array[i]].main;
         console.log(temp);
         if (temp > high) {
             high = temp;

@@ -14,7 +14,7 @@ const detail = (() => {
   };
   const windFn = (value) => {
     // !!! might need a few things - one for wind speed, another for direction
-    const wind = helper("WIND", `${value}km/h`);
+    const wind = helper("WIND", `${value} kmh`);
     // check units
     return wind;
   };
@@ -23,7 +23,7 @@ const detail = (() => {
     return vis;
   };
   const humidFn = (value) => {
-    const humid = helper("HUMIDITY", `${value}%`);
+    const humid = helper("HUMIDITY", `${value} %`);
     return humid;
   };
   const feelsFn = (specific, value) => {
@@ -34,7 +34,7 @@ const detail = (() => {
     return feels;
   };
   const popFn = (value) => {
-    const pop = helper("PRECIPITATION", `${Math.round(value * 100)}%`);
+    const pop = helper("PRECIPITATION", `${Math.round(value * 100)} %`);
     const label = createElement("div", { class: "popLabel" });
     label.textContent = "CHANCE OF";
     // !!! not sure if this works
@@ -104,24 +104,5 @@ const fillDetailContainer = (input, boolean) => {
   detailContainer.appendChild(detail.sunsetFn(input.sunset));
   return detailContainer;
 };
-// goal: display of extra data (box)
-// sunrise, sunset, feels like, pop, precip accum, pressure, airq, vis, wind, humidity
-const obj = {
-  city: "Denver",
-  country: "US",
-  temp: "82",
-  highlow: "85 / 62",
-  conditions: "Rain",
-  description: "light rain",
-  wind: "8",
-  visibility: 10000,
-  humidity: 28,
-  feelsLike: "81",
-  pop: "0.47",
-  precip: "0.13",
-  airQuality: "unknown",
-  pressure: 1015,
-  sunrise: 1662121750,
-  sunset: 1662168628,
-};
-export { fillDetailContainer, obj };
+
+export default fillDetailContainer;

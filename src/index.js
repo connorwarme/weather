@@ -1,6 +1,6 @@
 import "./style.css";
 import { checkTemp, createElement, hourMin, tempFn } from "./utility";
-import { obj, fillDetailContainer } from "./displayExtra";
+import fillDetailContainer from "./displayExtra";
 import fillMainContainer from "./displayMain";
 import { sortDays, findHighLow } from "./objFn";
 import fillForecastContainer from "./displayForecast";
@@ -191,9 +191,7 @@ const apiAction = (() => {
       const daysF = sortDays(forecastW);
       const highLow = findHighLow(daysF[0]);
       const currentW = await getCurrent(location);
-      // console.log(currentW);
       const airQ = await getAirQ(forecastW.city.coord.lat, forecastW.city.coord.lon);
-      // console.log(airQ);
       const collective = Promise.all([forecastW, currentW, airQ]).then((data) => {
         const object = declareData(data, highLow);
         console.log(object);
@@ -204,7 +202,7 @@ const apiAction = (() => {
         main.appendChild(current);
         const forecast = fillForecastContainer(daysF, object, boolean);
         main.appendChild(forecast);
-      })
+      }).catch((error) => console.log(error));
     } else {
       console.log(`Apologies! The site experienced an error: "${forecastW.message}".`);
     }
