@@ -202,7 +202,10 @@ const apiAction = (() => {
         main.appendChild(current);
         const forecast = fillForecastContainer(daysF, object, boolean);
         main.appendChild(forecast);
-      }).catch((error) => console.log(error));
+      }).catch((error) => {
+        alert('Apologies! The site experienced an error, check the log for details.');
+        console.log(error);
+      });
     } else {
       console.log(`Apologies! The site experienced an error: "${forecastW.message}".`);
     }
