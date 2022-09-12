@@ -8,6 +8,7 @@ const create = (() => {
         const tempBtnContainer = createElement('div', {class: "tempBtnContainer"});
         const tempToggle = createElement('div', {class: "tempToggle"});
         tempToggle.textContent = `°F`;
+        tempToggle.setAttribute('id', 'far');
         tempBtnContainer.appendChild(tempToggle);
         return tempBtnContainer;
     }

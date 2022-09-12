@@ -55,12 +55,20 @@
     width: 100px;
     height: 25px;
     border-radius: 50px;
-    background-color: #293241;
-    padding: 7px 16px 0 0;
+    background-color: red;
+    padding: 7px 16px 0 16px;
     display: block;
     position: relative;
+    text-align: end;
     cursor: pointer;
-    transition: 0.5s;
+    /* transition-duration: 1s; */
+    box-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 11px rgb(250, 39, 1), 0 0 15px rgb(243, 51, 17), 0 0 19px rgb(248, 61, 29), 0 0 27px rgb(245, 113, 90), 0 0 31px rgb(247, 167, 153);
+}
+#far {
+    transition-duration: 1s;
+    text-align: start;
+    background-color: green;
+    box-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 11px rgb(12, 133, 1), 0 0 15px rgb(38, 150, 11), 0 0 19px rgb(30, 204, 44), 0 0 27px rgb(70, 236, 78), 0 0 31px rgb(156, 243, 153);
 }
 .tempToggle::after {
     content: "";
@@ -70,6 +78,15 @@
     position: absolute;
     border-radius: 14px;
     top: 2px;
+    left: 5px;
+    transition-duration: 0.5s;
+}
+#far::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+.tempToggle:active::after {
+    width: 32px;
 }
 .mainContainer {
     grid-row: 2/3;
