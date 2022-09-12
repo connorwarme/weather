@@ -3,7 +3,7 @@
     margin: 0;
 }
 .main {
-    background-color: slateblue;
+    background-color: #3d5a80;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 5fr;
@@ -16,25 +16,60 @@
     /* justify-content: center;
     align-items: center; */
     grid-template-columns: 1fr 3fr 1fr;
+    background-color: #3d5a80;
 }
 .inputSearch {
     grid-column: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .inputField {
     width: 200px;
     height: 50px;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding-left: 10px;
+    background-color: #e0fbfc;
+    border: 2px solid #293241;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 10px;
 }
 .submitBtn {
-    height: 50px;
+    height: 54px;
+    background-color: #e0fbfc;
+    border: 2px solid #293241;
+    border-radius: 5px;
+}
+.submitBtn > img {
+    color: #293241;
 }
 .searchIcon {
-    height: 50px;
+    height: inherit;
 }
 .tempBtnContainer {
     grid-column: 3/4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tempToggle {
+    width: 100px;
+    height: 25px;
+    border-radius: 50px;
+    background-color: #293241;
+    padding: 7px 16px 0 0;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.tempToggle::after {
+    content: "";
+    width: 28px;
+    height: 28px;
+    background-color: #e8f5f7;
+    position: absolute;
+    border-radius: 14px;
+    top: 2px;
 }
 .mainContainer {
     grid-row: 2/3;

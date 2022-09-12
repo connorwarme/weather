@@ -26,9 +26,11 @@ const create = (() => {
         if (!tempUnit) {
             tempDiv.textContent = `°C`;
             toggleDisplayUnits(1);
+            tempDiv.setAttribute('id', "cel");
         } else {
             tempDiv.textContent = `°F`;
             toggleDisplayUnits(0);
+            tempDiv.setAttribute('id', "far");
         }
         tempUnit = !tempUnit;
         }
@@ -72,7 +74,7 @@ const fillSearchContainer = () => {
     const main = create.initial();
     const inputField = main.children[0].children[0].children[0];
     const searchBtn = main.children[0].children[0].children[1];
-    const tempToggle = main.children[0].children[1];
+    const tempToggle = main.children[0].children[1].children[0];
 
     // add listeners
     searchBtn.addEventListener("click", () => {
