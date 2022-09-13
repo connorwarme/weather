@@ -7,7 +7,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 5fr;
-    height: 100vh;
     width: 100vw;
 }
 .inputContainer {
@@ -125,6 +124,29 @@
 .mainContainer {
     grid-row: 2/3;
     grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.locationContainer {
+    display: flex;
+}
+.mainTempContainer {
+    font-size: 72px;
+}
+.highlowContainer {
+    display: flex;
+}
+.highlowContainer::after {
+    content: "";
+    height: 20px;
+    width: 10px;
+    background-color: black;
+}
+.iconContainer {
+    display: flex;
+    flex-direction: column;
 }
 .detailContainer {
     grid-row: 2/3;
@@ -138,4 +160,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.windIcon {
+    height: 35px;
 }
