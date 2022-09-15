@@ -138,15 +138,31 @@
 .highlowContainer {
     display: flex;
 }
-.highlowContainer::after {
+.highlowContainer :first-child {
+    font-size: 40px;
+    margin-right: 20px;
+}
+.highlowContainer :last-child {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+}
+.highlowContainer :first-child::after {
     content: "";
-    height: 20px;
-    width: 10px;
+    height: 48px;
+    width: 4px;
+    border-radius: 2px;
+    margin: 0 8px;
     background-color: black;
+    position: absolute;
 }
 .iconContainer {
     display: flex;
     flex-direction: column;
+}
+.mainDescription {
+    display: flex;
+    justify-content: center;
 }
 .detailContainer {
     grid-row: 2/3;
