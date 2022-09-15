@@ -41,10 +41,6 @@
 .inputField:focus {
     height: 50px;
     outline: none;
-    box-shadow: -2px -2px 3px rgb(238, 108, 77), 2px 2px 3px rgb(238, 108, 77);
-}
-.inputField:focus {
-    font-size: 20px;
 }
 .submitBtn {
     height: 55px;
@@ -64,7 +60,7 @@
 }
 .submitBtn:hover {
     cursor: pointer;
-    box-shadow: -2px -2px 3px rgb(238, 108, 77), 2px 2px 3px rgb(238, 108, 77);
+    outline: 3px solid rgb(238, 108, 77);
 }
 .submitBtn:hover .searchIcon {
     transform: scale(1.15);
