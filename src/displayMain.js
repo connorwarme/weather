@@ -23,7 +23,7 @@ const displayMain = (() => {
     // !!! don't know if I should display icon image BELOW other data, or as backdrop of the mainContainer
     // content
     const tempUnit = whatTemp(boolean);
-    city.textContent = object.city;
+    city.textContent = object.city.toUpperCase();
     country.textContent = object.country;
     tempDiv.textContent = object.temp[tempUnit];
     highDiv.textContent = `${object.high[tempUnit]}`;

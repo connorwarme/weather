@@ -15,7 +15,8 @@ const detail = (() => {
   };
   const windFn = (value) => {
     // !!! might need a few things - one for wind speed, another for direction
-    const wind = helper("WIND", `${value.speed} mph`);
+    const wind = helper("Wind", `${value.speed} mph`);
+    wind.setAttribute('id', 'wind');
     const windIcon = createElement('img', {class: "windIcon"});
     windIcon.src = Icon;
     windIcon.style.transform = `rotate(${value.deg}deg)`;
@@ -25,24 +26,24 @@ const detail = (() => {
     return wind;
   };
   const visFn = (value) => {
-    const vis = helper("VISIBILITY", `${value / 1000} mi`);
+    const vis = helper("Visibility", `${value / 1000} mi`);
     return vis;
   };
   const humidFn = (value) => {
-    const humid = helper("HUMIDITY", `${value} %`);
+    const humid = helper("Humidity", `${value} %`);
     return humid;
   };
   const feelsFn = (specific, value) => {
-    const feels = helper("FEELS LIKE", "");
+    const feels = helper("Feels Like", "");
     const feelsDiv = createElement("div", {id: "temp", class: `${value.feelsLike.far} ${value.feelsLike.cel}`});
     feelsDiv.textContent = `${specific}`;
     feels.children[1].appendChild(feelsDiv);
     return feels;
   };
   const popFn = (value) => {
-    const pop = helper("PRECIPITATION", `${Math.round(value * 100)} %`);
+    const pop = helper("Precipitation", `${Math.round(value * 100)} %`);
     const label = createElement("div", { class: "popLabel" });
-    label.textContent = "CHANCE OF";
+    label.textContent = "Chance of";
     pop.insertBefore(label, pop.firstChild);
     return pop;
   };
@@ -53,30 +54,30 @@ const detail = (() => {
     if (value !== undefined) {
       newVal = value;
     }
-    const precip = helper("ACCUMULATION", `${newVal['3h']}mm in last 3h`);
+    const precip = helper("Accumulation", `${newVal['3h']}mm in last 3h`);
     const label = createElement("div", { class: "precipLabel" });
-    label.textContent = "PRECIPITATION";
+    label.textContent = "Precipitation";
     precip.insertBefore(label, precip.firstChild);
     return precip;
   };
   const airFn = (value) => {
-    const air = helper("AIR QUALITY", `${value}`);
+    const air = helper("Air Quality", `${value}`);
     // !!! might need units clarifier (score out of 100?)
     air.children[1].setAttribute('id', `quality${value}`);
     return air;
   };
   const pressureFn = (value) => {
-    const pressure = helper("PRESSURE", `${value} hPa`);
+    const pressure = helper("Pressure", `${value} hPa`);
     return pressure;
   };
   const sunriseFn = (value) => {
     const time = value;
-    const rise = helper("SUNRISE", `${time}`);
+    const rise = helper("Sunrise", `${time}`);
     return rise;
   };
   const sunsetFn = (value) => {
     const time = value;
-    const set = helper("SUNSET", `${time}`);
+    const set = helper("Sunset", `${time}`);
     return set;
   };
   return {
