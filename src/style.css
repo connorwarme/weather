@@ -15,10 +15,10 @@
     src: url("./fonts/Aref/ArefRuqaaInk-Regular.ttf") format("truetype");
 }
 .main {
-    background-color: #3d5a80;
+    background-color: rgb(152, 193, 217);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 1fr 3fr;
     width: 100vw;
     font-family: 'Raleway', Georgia, 'Times New Roman', Times, serif;
 }
@@ -26,10 +26,9 @@
     grid-column: 1/3;
     display: grid;
     height: 100px;
-    /* justify-content: center;
-    align-items: center; */
     grid-template-columns: 1fr 3fr 1fr;
     background-color: #3d5a80;
+    box-shadow: 0 0 10px #e0fbfc;
 }
 .inputSearch {
     grid-column: 2/3;
@@ -93,7 +92,7 @@
     width: 100px;
     height: 25px;
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 700;
     border-radius: 10px;
     border: 2px solid #e0fbfc;
     background-color: rgb(238, 108, 77);
@@ -141,9 +140,12 @@
 .mainCity {
     font-size: 40px;
     font-weight: bold;
+    padding: 0 5px;
+    border-bottom: 4px solid rgb(61, 90, 128);
 }
 .mainTempContainer {
     font-size: 72px;
+    margin-bottom: 14px;
 }
 .highlowContainer {
     display: flex;
@@ -163,7 +165,7 @@
     width: 4px;
     border-radius: 2px;
     margin: 0 8px;
-    background-color: black;
+    background-color: rgb(61, 90, 128);
     position: absolute;
 }
 .iconContainer {
@@ -211,4 +213,33 @@
     grid-area: 2/2/3/3;
     align-self: start;
     margin-top: 8px;
+}
+.detailLabel {
+    border-bottom: 2px solid rgb(61, 90, 128);
+    padding: 0 3px;
+    font-size: 14px;
+}
+.popLabel,
+.precipLabel {
+    font-size: 14px;
+}
+.detailData {
+    font-size: 20px;
+    font-weight: 600;
+}
+.forecastContainer {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+
+}
+.forecastContainer > div {
+    display: grid;
+    grid-template-rows: auto;
+    border: 2px solid aliceblue;
+}
+.forecastBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr;
 }
