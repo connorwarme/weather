@@ -41,7 +41,6 @@
     width: 200px;
     height: 40px;
     color:rgb(41, 50, 65);
-    font-family: 'Aref', 'Raleway';
     font-weight: 500;
     font-size: 18px;
     background-color: rgb(152, 193, 217);
@@ -94,7 +93,7 @@
     width: 100px;
     height: 25px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 800;
     border-radius: 10px;
     border: 2px solid #e0fbfc;
     background-color: rgb(238, 108, 77);
