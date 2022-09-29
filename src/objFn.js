@@ -1,3 +1,4 @@
+import { getDayOfYear } from "date-fns";
 
 // functions to run on the data, give obj proper values
 const returnDate = (object, item) => {
@@ -21,10 +22,9 @@ const sortDays = (object) => {
     };
     array.forEach(index => {
         const indexDate = returnDate(object, index);
-        const i = indexDate.getDate() - dday;
-        const value = indexDate.getHours();
-        console.log(index);
+        const i = getDayOfYear(indexDate) - getDayOfYear(date);
         console.log(i);
+        const value = indexDate.getHours();
         collection[i][value] = (index);
     });
     return collection;
