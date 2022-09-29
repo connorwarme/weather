@@ -1,4 +1,4 @@
-import { checkTemp, createElement, hourMin, tempFn } from "./utility";
+import { checkTemp, createElement, hourMin, tempFn, dateFn } from "./utility";
 import fillDetailContainer from "./displayExtra";
 import fillMainContainer from "./displayMain";
 import { sortDays, findHighLow } from "./objFn";
@@ -81,6 +81,7 @@ const apiAction = (() => {
       const precip = forecast.list[0].rain;
       const airQuality = air.list[0].main.aqi;
       const { pressure } = forecast.list[0].main;
+      const day = (dateFn(current.dt, timezone)).getDay();
       return {
         city,
         gps,
@@ -101,6 +102,7 @@ const apiAction = (() => {
         precip,
         airQuality,
         pressure,
+        day
       };
     };
     // DOM: clear currently displayed data, in order to display new data

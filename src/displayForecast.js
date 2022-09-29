@@ -1,8 +1,16 @@
-import { createElement, time, timeCheck, tempFn, whatTemp } from "./utility";
+import { createElement, time, timeCheck, tempFn, whatTemp, getTheDay } from "./utility";
 //
 const create = (() => {
     const container = createElement('div', {class: "forecastContainer"});
     
+    const makeTitle = (object, number) => {
+        console.log(number);
+        const day = getTheDay(object.day + number);
+        const title = createElement('div', {class: 'cardDay'});
+        title.textContent = day;
+        return title;
+    }
+
     const makeTime = (object, input) => {
         const forecastTime = time(input.dt, object.timezone);
         const timeDiv = createElement('div', {class: "timeDiv"});
@@ -40,7 +48,6 @@ const create = (() => {
             card.appendChild(block);
             block.appendChild(makeTime(object, collective[index]));
             block.appendChild(makeTemp(collective[index], boolean));
-            // !!! need icon here
             block.appendChild(makeIcon(collective[index]));
             block.appendChild(makePop(collective[index]));
         })
@@ -55,6 +62,7 @@ const create = (() => {
         array.forEach(index => {
             const card = createElement('div', {class: `card${i}`});
             makeCard(object, index, card, boolean);
+            card.prepend(makeTitle(object, i))
             container.appendChild(card);
             i += 1;
         })

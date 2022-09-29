@@ -12,6 +12,7 @@ const sortDays = (object) => {
     const array = object.list;
     console.log(array);
     const collection = {
+        // !!!
         0: {},
         1: {},
         2: {},

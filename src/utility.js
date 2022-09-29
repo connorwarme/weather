@@ -43,7 +43,16 @@ const hourMin = (input, offset) => {
 }
 const dateFn = (input, offset) => {
     const value = time(input, offset);
-    return value.getDate();
+    // !!! removed getDate()
+    return value;
+}
+const getTheDay = (input) => {
+    let value = input;
+    if (input > 6) {
+        value = input - 7;
+    }
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[value];
 }
 // temp -> convert F to C
 // planning to have both in an object
@@ -75,4 +84,4 @@ const checkTemp = (current, high, low) => {
     }
     return [hi, lo];
 }
-export { createElement, tempFn, whatTemp, checkTemp, hourMin, dateFn, time, timeCheck };
+export { createElement, tempFn, whatTemp, checkTemp, hourMin, dateFn, getTheDay, time, timeCheck };
