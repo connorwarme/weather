@@ -1,4 +1,4 @@
-import { getDayOfYear, differenceInCalendarDays } from "date-fns";
+import { differenceInCalendarDays } from "date-fns";
 
 // functions to run on the data, give obj proper values
 const returnDate = (object, item) => {
