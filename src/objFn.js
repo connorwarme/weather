@@ -10,6 +10,7 @@ const sortDays = (object) => {
     const date = returnDate(object, object.list[0]);
     const dday = date.getDate();
     const array = object.list;
+    console.log(array);
     const collection = {
         0: {},
         1: {},
@@ -22,6 +23,8 @@ const sortDays = (object) => {
         const indexDate = returnDate(object, index);
         const i = indexDate.getDate() - dday;
         const value = indexDate.getHours();
+        console.log(index);
+        console.log(i);
         collection[i][value] = (index);
     });
     return collection;
