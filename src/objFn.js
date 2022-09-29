@@ -1,4 +1,4 @@
-import { getDayOfYear } from "date-fns";
+import { getDayOfYear, differenceInCalendarDays } from "date-fns";
 
 // functions to run on the data, give obj proper values
 const returnDate = (object, item) => {
@@ -9,7 +9,6 @@ const returnDate = (object, item) => {
 }
 const sortDays = (object) => {
     const date = returnDate(object, object.list[0]);
-    const dday = date.getDate();
     const array = object.list;
     console.log(array);
     const collection = {
@@ -22,8 +21,7 @@ const sortDays = (object) => {
     };
     array.forEach(index => {
         const indexDate = returnDate(object, index);
-        const i = getDayOfYear(indexDate) - getDayOfYear(date);
-        console.log(i);
+        const i = differenceInCalendarDays(indexDate, date);
         const value = indexDate.getHours();
         collection[i][value] = (index);
     });
