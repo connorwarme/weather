@@ -41,6 +41,33 @@ const create = (() => {
         apiAction.mainFn(userInput, tempUnit, mainDiv);
         input.value = "";
     };
+    const listFn = (label, text, displayDiv, style, hideDivArray) => {
+        label.textContent = `${text}`;
+        displayDiv.style.display = `${style}`;
+        hideDivArray.forEach(index => {
+            index.style.display = 'none';
+        });
+    }
+    const menu = () => {
+        const menuContainer = createElement('div', {class: 'menuContainer'});
+        const button = createElement('button', {class: 'menuBtn', id: 'menu'});
+        const label = createElement('label', {class: 'menuBtnLabel', for: 'menu'});
+        const list = createElement('div', {class: 'menuList'});
+        const current = createElement('li', {class: 'menuCurrent'});
+        current.textContent = 'Current';
+        const detail = createElement('li', {class: 'menuDetail'});
+        detail.textContent = 'Details';
+        const forecast = createElement('li', {class: 'menuForecast'});
+        forecast.textContent = 'Forecast';
+        list.appendChild(current);
+        list.appendChild(detail);
+        list.appendChild(forecast);
+        menuContainer.appendChild(button);
+        menuContainer.appendChild(label);
+        menuContainer.appendChild(list);
+        return menuContainer;
+
+    }
     const initial = () => {
         const main = createElement("div", { class: "main" });
         // make input field and submit button
@@ -60,6 +87,7 @@ const create = (() => {
         const searchIcon = createElement('img', {class: "searchIcon"});
         searchIcon.src = Icon;
         searchIcon.alt = `Search`;
+        inputContainer.appendChild(menu());
         inputContainer.appendChild(inputSearchContainer);
         inputSearchContainer.appendChild(inputField);
         inputSearchContainer.appendChild(submitBtn);
@@ -68,16 +96,29 @@ const create = (() => {
         main.appendChild(inputContainer);
         return main;
     }
-    return { initial, temp, submitFn, toggleFn }
+    return { initial, temp, listFn, submitFn, toggleFn }
 })();
 // 
 const fillSearchContainer = () => {
     const main = create.initial();
-    const inputField = main.children[0].children[0].children[0];
-    const searchBtn = main.children[0].children[0].children[1];
-    const tempToggle = main.children[0].children[1].children[0];
+    const menu = main.children[0].children[0];
+    const inputField = main.children[0].children[1].children[0];
+    const searchBtn = main.children[0].children[1].children[1];
+    const tempToggle = main.children[0].children[2].children[0];
 
     // add listeners
+    menu.children[0].addEventListener('click', () => {
+        menu.children[2].style.display = 'block';
+    });
+    menu.children[2].children[0].addEventListener('click', () => {
+        create.listFn(menu.children[1], 'Current', main.children[2], 'flex', [main.children[1], main.children[3]]);
+    });
+    menu.children[2].children[1].addEventListener('click', () => {
+        create.listFn(menu.children[1], 'Details', main.children[1], 'grid', [main.children[2], main.children[3]]);
+    });
+    menu.children[2].children[2].addEventListener('click', () => {
+        create.listFn(menu.children[1], 'Forecast', main.children[3], 'grid', [main.children[1], main.children[2]]);
+    });
     searchBtn.addEventListener("click", () => {
         create.submitFn(inputField, main);
     });
