@@ -53,7 +53,7 @@ const create = (() => {
         const menuContainer = createElement('div', {class: 'menuContainer'});
         const button = createElement('button', {class: 'menuBtn', id: 'menu'});
         const img = createElement('img', {class: "menuIcon"});
-        img.src = Menu.src;
+        img.src = Menu;
         img.alt = 'Menu';
         const label = createElement('label', {class: 'menuBtnLabel', for: 'menu'});
         const list = createElement('div', {class: 'menuList'});
