@@ -13,7 +13,7 @@ const create = (() => {
     const makeTime = (object, input) => {
         const forecastTime = time(input.dt, object.timezone);
         const timeDiv = createElement('div', {class: "timeDiv"});
-        timeDiv.textContent = `${timeCheck(forecastTime.getHours())}00`;
+        timeDiv.textContent = `${timeCheck(forecastTime.getHours())}:00`;
         return timeDiv;
     }
     const makeTemp = (forecastObj, boolean) => {
