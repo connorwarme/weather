@@ -392,11 +392,11 @@
         grid-template-columns: 1fr;
         gap: 0;
     }
-    .forecastContainer :first-child,
-    .forecastContainer :last-child {
+    .forecastContainer :first-child {
         display: flex;
         flex-direction: column;
     }
+    .card0 .cardDay,
     .card5 .cardDay {
         margin: 24px;
     }
