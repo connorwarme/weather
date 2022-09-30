@@ -1,6 +1,7 @@
 import { createElement } from "./utility";
 import apiAction from "./coreFns";
 import Icon from "./icons/magnify.svg";
+import Menu from "./icons/menu.svg";
 
 const create = (() => {
     // make temp toggle
@@ -51,6 +52,9 @@ const create = (() => {
     const menu = () => {
         const menuContainer = createElement('div', {class: 'menuContainer'});
         const button = createElement('button', {class: 'menuBtn', id: 'menu'});
+        const img = createElement('img', {class: "menuIcon"});
+        img.src = Menu.src;
+        img.alt = 'Menu';
         const label = createElement('label', {class: 'menuBtnLabel', for: 'menu'});
         const list = createElement('div', {class: 'menuList'});
         const current = createElement('li', {class: 'menuCurrent'});
@@ -63,6 +67,7 @@ const create = (() => {
         list.appendChild(detail);
         list.appendChild(forecast);
         menuContainer.appendChild(button);
+        button.appendChild(img);
         menuContainer.appendChild(label);
         menuContainer.appendChild(list);
         return menuContainer;
