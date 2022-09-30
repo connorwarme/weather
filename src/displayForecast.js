@@ -10,7 +10,6 @@ const create = (() => {
         title.textContent = day;
         return title;
     }
-
     const makeTime = (object, input) => {
         const forecastTime = time(input.dt, object.timezone);
         const timeDiv = createElement('div', {class: "timeDiv"});
@@ -40,7 +39,12 @@ const create = (() => {
         popDiv.textContent = `${Math.round(thePop * 100)}%`;
         return popDiv;
     }
-
+    const makeSpacer = (parent) => {
+        const spacerDiv = createElement('div', {class: `spacerDiv0`});
+        parent.insertBefore(spacerDiv, parent.children[1]);
+        const value = 12 - parent.children.length;
+        spacerDiv.style.gridRow = `2/${value}`;
+    }
     const makeCard = (object, collective, card, boolean) => {
         const keys = Object.keys(collective);
         keys.forEach(index => {
@@ -62,7 +66,17 @@ const create = (() => {
         array.forEach(index => {
             const card = createElement('div', {class: `card${i}`});
             makeCard(object, index, card, boolean);
-            card.prepend(makeTitle(object, i))
+            card.prepend(makeTitle(object, i));
+            if (i === 0) {
+                card.children[0].textContent = 'Today';
+                if (card.children.length < 9) {
+                    makeSpacer(card);
+                    // const spacerDiv = createElement('div', {class: `spacerDiv0`});
+                    // card.insertBefore(spacerDiv, card.children[1]);
+                    // const value = 12 - card.children.length;
+                    // spacerDiv.style.gridRow = `2/${value}`;
+                }
+            }
             container.appendChild(card);
             i += 1;
         })

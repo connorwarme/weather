@@ -232,14 +232,33 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 15px;
-
+    justify-self: center;
 }
 .forecastContainer > div {
     display: grid;
-    grid-template-rows: auto;
-    border: 2px solid aliceblue;
+    grid-template-rows: repeat(9, 1fr);
+    border: 2px solid #e0fbfc;
+    justify-items: center;
+    align-items: center;
+}
+.card0 {
+    align-self: end;
+}
+.card5 {
+    align-self: start;
+}
+.cardDay {
+    display: flex;
+    justify-content: center;
+}
+.spacerDiv0,
+.spacerDiv5 {
+    display: flex;
+    flex-grow: 1;
 }
 .forecastBlock {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 1fr;
+    align-items: center;
+    justify-content: center;
 }
