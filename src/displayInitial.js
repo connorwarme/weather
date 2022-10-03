@@ -56,6 +56,7 @@ const create = (() => {
         img.src = Menu;
         img.alt = 'Menu';
         const label = createElement('label', {class: 'menuBtnLabel', for: 'menu'});
+        const container = createElement('div', {class: 'menuListContainer'});
         const list = createElement('div', {class: 'menuList'});
         const current = createElement('li', {class: 'menuCurrent'});
         current.textContent = 'Current';
@@ -69,7 +70,8 @@ const create = (() => {
         menuContainer.appendChild(button);
         button.appendChild(img);
         menuContainer.appendChild(label);
-        menuContainer.appendChild(list);
+        menuContainer.appendChild(container);
+        container.appendChild(list);
         return menuContainer;
 
     }
@@ -107,6 +109,7 @@ const create = (() => {
 const fillSearchContainer = () => {
     const main = create.initial();
     const menu = main.children[0].children[0];
+    const menuList = menu.children[2];
     const inputField = main.children[0].children[1].children[0];
     const searchBtn = main.children[0].children[1].children[1];
     const tempToggle = main.children[0].children[2].children[0];
@@ -115,13 +118,13 @@ const fillSearchContainer = () => {
     menu.children[0].addEventListener('click', () => {
         menu.children[2].style.display = 'block';
     });
-    menu.children[2].children[0].addEventListener('click', () => {
+    menuList.children[0].children[0].addEventListener('click', () => {
         create.listFn(menu.children[1], 'Current', main.children[2], 'flex', [main.children[1], main.children[3]]);
     });
-    menu.children[2].children[1].addEventListener('click', () => {
+    menuList.children[0].children[1].addEventListener('click', () => {
         create.listFn(menu.children[1], 'Details', main.children[1], 'grid', [main.children[2], main.children[3]]);
     });
-    menu.children[2].children[2].addEventListener('click', () => {
+    menuList.children[0].children[2].addEventListener('click', () => {
         create.listFn(menu.children[1], 'Forecast', main.children[3], 'grid', [main.children[1], main.children[2]]);
     });
     searchBtn.addEventListener("click", () => {
