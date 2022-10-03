@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    background-color: rgb(152, 193, 217);
 }
 @font-face {
     font-family: 'Merriweather';
@@ -33,6 +34,7 @@
 }
 .menuContainer {
     display: none;
+    background-color: inherit;
 }
 .menuList {
     display: none;
@@ -42,6 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: inherit;
 }
 .inputField {
     width: 400px;
@@ -85,6 +88,7 @@
 }
 .searchIcon {
     height: 48px;
+    background-color: transparent;
 }
 .submitBtn:hover .searchIcon {
     transform: scale(1.15);
@@ -94,6 +98,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: inherit;
 }
 .tempToggle {
     width: 100px;
@@ -184,6 +189,7 @@
 }
 .mainWeatherIcon {
     margin: -35px 0;
+    background-color: transparent;
 }
 .mainDescription {
     display: flex;
@@ -274,6 +280,11 @@
     align-items: center;
     justify-items: center;
     margin: -15px 5px;
+    background-color: transparent;
+}
+.forecastIconContainer,
+.forecastIcon {
+    background-color: transparent;
 }
 @media (min-width: 650px) and (max-width: 950px)  {
     .inputContainer {
@@ -322,6 +333,7 @@
     .menuBtn > img {
         height: 32px;
         filter: invert(18%) sepia(8%) saturate(1746%) hue-rotate(179deg) brightness(96%) contrast(95%);
+        background-color: transparent;
     }
     .menuBtn:hover {
         transform: scale(1.1);
@@ -392,7 +404,8 @@
         grid-template-columns: 1fr;
         gap: 0;
     }
-    .forecastContainer :first-child {
+    .forecastContainer :first-child,
+    .forecastContainer .card5 {
         display: flex;
         flex-direction: column;
     }
