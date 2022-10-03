@@ -315,6 +315,7 @@
     .inputContainer {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: 1fr 1fr;
+        min-height: 100px;
     }
     .menuContainer {
         display: flex;
@@ -342,6 +343,14 @@
         position: absolute;
         top: 100px;
         margin-left: 3vw;
+        background-color: rgb(152, 193, 217);
+        border: 4px solid #e0fbfc;
+        border-radius: 10px;
+    }
+    .menuList li {
+        list-style: none;
+        background-color: transparent;
+        padding: 1vh 5vw;
     }
     .inputSearch {
         display: grid;
