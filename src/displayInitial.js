@@ -42,9 +42,12 @@ const create = (() => {
         apiAction.mainFn(userInput, tempUnit, mainDiv);
         input.value = "";
     };
-    const listFn = (label, text, displayDiv, style, hideDivArray) => {
-        label.textContent = `${text}`;
-        displayDiv.style.display = `${style}`;
+    const listFn = (event, parent, displayDiv, style, hideDivArray) => {
+        event.target.style.fontStyle = 'italic';
+        parent.style.display = 'none';
+        console.log(displayDiv);
+        console.log(style);
+        displayDiv.style.display = style;
         hideDivArray.forEach(index => {
             index.style.display = 'none';
         });
@@ -58,12 +61,15 @@ const create = (() => {
         const label = createElement('label', {class: 'menuBtnLabel', for: 'menu'});
         const container = createElement('div', {class: 'menuListContainer'});
         const list = createElement('div', {class: 'menuList'});
+        const text = createElement('div', {class: 'menuText'});
+        text.textContent = 'Please Select:';
         const current = createElement('li', {class: 'menuCurrent'});
         current.textContent = 'Current';
         const detail = createElement('li', {class: 'menuDetail'});
         detail.textContent = 'Details';
         const forecast = createElement('li', {class: 'menuForecast'});
         forecast.textContent = 'Forecast';
+        list.appendChild(text);
         list.appendChild(current);
         list.appendChild(detail);
         list.appendChild(forecast);
@@ -116,16 +122,17 @@ const fillSearchContainer = () => {
 
     // add listeners
     menu.children[0].addEventListener('click', () => {
-        menu.children[2].style.display = 'block';
+        menuList.style.display = 'flex';
     });
-    menuList.children[0].children[0].addEventListener('click', () => {
-        create.listFn(menu.children[1], 'Current', main.children[2], 'flex', [main.children[1], main.children[3]]);
+    menuList.children[0].children[1].addEventListener('click', (e) => {
+        console.log(main);
+        create.listFn(e, menuList, main.children[2], 'flex', [main.children[1], main.children[3]]);
     });
-    menuList.children[0].children[1].addEventListener('click', () => {
-        create.listFn(menu.children[1], 'Details', main.children[1], 'grid', [main.children[2], main.children[3]]);
+    menuList.children[0].children[2].addEventListener('click', (e) => {
+        create.listFn(e, menuList, main.children[1], 'grid', [main.children[2], main.children[3]]);
     });
-    menuList.children[0].children[2].addEventListener('click', () => {
-        create.listFn(menu.children[1], 'Forecast', main.children[3], 'grid', [main.children[1], main.children[2]]);
+    menuList.children[0].children[3].addEventListener('click', (e) => {
+        create.listFn(e, menuList, main.children[3], 'grid', [main.children[1], main.children[2]]);
     });
     searchBtn.addEventListener("click", () => {
         create.submitFn(inputField, main);
