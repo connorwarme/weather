@@ -42,7 +42,15 @@ const create = (() => {
         apiAction.mainFn(userInput, tempUnit, mainDiv);
         input.value = "";
     };
+    const resetFont = (array) => {
+        array.forEach(index => {
+            index.style.fontStyle = 'normal';
+        });
+    }
     const listFn = (event, parent, displayDiv, style, hideDivArray) => {
+        console.log(event);
+        console.log(parent.children[0].children);
+        resetFont(Array.from(parent.children[0].children));
         event.target.style.fontStyle = 'italic';
         parent.style.display = 'none';
         console.log(displayDiv);
@@ -125,7 +133,6 @@ const fillSearchContainer = () => {
         menuList.style.display = 'flex';
     });
     menuList.children[0].children[1].addEventListener('click', (e) => {
-        console.log(main);
         create.listFn(e, menuList, main.children[2], 'flex', [main.children[1], main.children[3]]);
     });
     menuList.children[0].children[2].addEventListener('click', (e) => {
