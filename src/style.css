@@ -286,10 +286,14 @@
     background-color: transparent;
 }
 .footerContainer {
-
+    display: flex;
+    justify-content: center;
 }
 .footerBox {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .githubImg,
 .linkImg {

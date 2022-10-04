@@ -114,10 +114,10 @@ const apiAction = (() => {
       }
     const clearMain = (mainDiv) => {
         console.log(mainDiv.children.length);
-        for (let i = 1; i < mainDiv.children.length -1; i += 0) {
-          console.log(mainDiv.children[0].nextElementSibling);
-          clearAll(mainDiv.children[0].nextElementSibling);
-          mainDiv.removeChild(mainDiv.children[0].nextElementSibling);
+        for (let i = 0; i < mainDiv.children.length; i += 0) {
+          console.log(mainDiv.children[0]);
+          clearAll(mainDiv.children[0]);
+          mainDiv.removeChild(mainDiv.children[0]);
         }
     }
     // the main event
