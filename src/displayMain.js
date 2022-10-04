@@ -17,7 +17,7 @@ const displayMain = (() => {
     const lowDiv = createElement("div", {id: "temp", class: `${object.low.far} ${object.low.cel}`});
     const iconContainer = createElement("div", { class: "iconContainer" });
     const icon = createElement("img", {class: "mainWeatherIcon", "aria-label": "Weather Icon"});
-    icon.src = `http://openweathermap.org/img/wn/${object.icon}@4x.png`;
+    icon.src = `https://openweathermap.org/img/wn/${object.icon}@4x.png`;
     icon.alt = `${object.description}`;
     const description = createElement("div", { class: "mainDescription" });
     // !!! don't know if I should display icon image BELOW other data, or as backdrop of the mainContainer

@@ -63,6 +63,10 @@
     height: 50px;
     outline: none;
 }
+.inputField::placeholder {
+    color:rgb(61, 90, 128);
+    opacity: 0.8;
+}
 .submitBtn {
     height: 55px;
     width: 55px;
