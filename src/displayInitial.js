@@ -153,6 +153,7 @@ const fillSearchContainer = () => {
     const body = create.initial();
     const menu = body.children[0].children[0];
     const menuList = menu.children[2];
+    const main = body.children[1];
     const inputField = body.children[0].children[1].children[0];
     const searchBtn = body.children[0].children[1].children[1];
     const tempToggle = body.children[0].children[2].children[0];
@@ -162,16 +163,16 @@ const fillSearchContainer = () => {
         menuList.style.display = 'flex';
     });
     menuList.children[0].children[1].addEventListener('click', (e) => {
-        create.listFn(e, menuList, body.children[2], 'flex', [body.children[1], body.children[3]]);
+        create.listFn(e, menuList, main.children[1], 'flex', [main.children[0], main.children[2]]);
     });
     menuList.children[0].children[2].addEventListener('click', (e) => {
-        create.listFn(e, menuList, body.children[1], 'grid', [body.children[2], body.children[3]]);
+        create.listFn(e, menuList, main.children[0], 'grid', [main.children[1], main.children[2]]);
     });
     menuList.children[0].children[3].addEventListener('click', (e) => {
-        create.listFn(e, menuList, body.children[3], 'grid', [body.children[1], body.children[2]]);
+        create.listFn(e, menuList, main.children[2], 'grid', [main.children[0], main.children[1]]);
     });
     searchBtn.addEventListener("click", () => {
-        create.submitFn(inputField, body.children[1]);
+        create.submitFn(inputField, main);
     });
     tempToggle.addEventListener('click', () => {
         create.toggleFn(tempToggle);
