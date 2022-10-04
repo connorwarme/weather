@@ -2,6 +2,8 @@ import { createElement } from "./utility";
 import apiAction from "./coreFns";
 import Icon from "./icons/magnify.svg";
 import Menu from "./icons/menu.svg";
+import Github from './icons/github.svg';
+import LinkedIn from './icons/linkedin.svg';
 
 const create = (() => {
     // make temp toggle
@@ -87,7 +89,30 @@ const create = (() => {
         menuContainer.appendChild(container);
         container.appendChild(list);
         return menuContainer;
-
+    }
+    const createFooter = () => {
+        const footer = createElement('div', {class: 'footerContainer'});
+        const footerBox = createElement('div', {class: "footerBox"});
+        const linkContainer = createElement('div', {class: "linkContainer"});
+        const gitLink = createElement('a', {"href": "https://github.com/connorwarme", "alt": "Github Profile", "target": "_blank"});
+        const gitIcon = createElement('img', {class: 'githubImg'});
+        gitIcon.src = Github;
+        gitIcon.alt = "Github Profile";
+        const linkLink = createElement('a', {"href": "https://www.linkedin.com/in/connor-warme-103a09167", "alt": "LinkedIn Profile", "target": "_blank"});
+        const linkIcon = createElement('img', {class: 'linkImg'});
+        linkIcon.src = LinkedIn;
+        linkIcon.alt = "LinkedIn Profile";
+        const textContainer = createElement('div', {class: "textContainer"});
+        textContainer.textContent = "Peregrinning Productions";
+        // append it all together
+        footer.appendChild(footerBox);
+        footerBox.appendChild(linkContainer);
+        linkContainer.appendChild(gitLink);
+        gitLink.appendChild(gitIcon);
+        linkContainer.appendChild(linkLink);
+        linkLink.appendChild(linkIcon);
+        footerBox.appendChild(textContainer);
+        return footer;
     }
     const initial = () => {
         const main = createElement("div", { class: "main" });
@@ -115,6 +140,7 @@ const create = (() => {
         submitBtn.appendChild(searchIcon);
         inputContainer.appendChild(temp());
         main.appendChild(inputContainer);
+        main.appendChild(createFooter());
         return main;
     }
     return { initial, temp, listFn, submitFn, toggleFn }
