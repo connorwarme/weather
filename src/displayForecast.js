@@ -28,7 +28,7 @@ const create = (() => {
     const makeIcon = (forecastObj) => {
         const iconDiv = createElement('div', {class: "forecastIconContainer"});
         const icon = createElement('img', {class: "forecastIcon", "aria-label": "Forecast Icon", title: `${forecastObj.weather[0].description}`});
-        icon.src = `http://openweathermap.org/img/wn/${forecastObj.weather[0].icon}@2x.png`;
+        icon.src = `https://openweathermap.org/img/wn/${forecastObj.weather[0].icon}@2x.png`;
         icon.alt = forecastObj.weather[0].main;
         iconDiv.appendChild(icon);
         return iconDiv;
