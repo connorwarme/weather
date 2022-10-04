@@ -1,6 +1,8 @@
-# weather 
+# weather app  
   
 ## objectives  
-* create a weather app  
+* provide weather for given location   
 * utilize OpenWeatherMap API  
 * display images that correlate with weather data  
+* create toggle for Fahrenheit / Celsius  
+* implement mobile-friendly UI  
