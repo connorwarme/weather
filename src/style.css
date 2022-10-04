@@ -249,7 +249,7 @@
     grid-column: 1/3;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10vh 5vw;
+    gap: 5vh 5vw;
     justify-self: center;
     margin: 3vh 0;
 }
@@ -338,6 +338,7 @@
     }
     .menuBtn:hover {
         transform: scale(1.1);
+        cursor: pointer;
     }
     .menuListContainer {
         height: 100%;
@@ -376,8 +377,9 @@
         transition-duration: 0.3s;
     }
     .menuList li:hover {
-        font-style: italic;
+        font-weight: 700;
         transform: scale(1.1);
+        cursor: pointer;
     }
     .inputSearch {
         display: grid;
@@ -433,6 +435,9 @@
     .detailContainer {
         display: none;
         background-color: rgb(152, 193, 217);
+    }
+    .detailData {
+        font-size: 18px;
     }
     .forecastContainer {
         display: none;

@@ -54,7 +54,7 @@ const detail = (() => {
     if (value !== undefined) {
       newVal = value;
     }
-    const precip = helper("Accumulation", `${newVal['3h']}mm in last 3h`);
+    const precip = helper("Accumulation", `${newVal['3h']}mm in 3h`);
     const label = createElement("div", { class: "precipLabel" });
     label.textContent = "Precipitation";
     precip.insertBefore(label, precip.firstChild);
