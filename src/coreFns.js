@@ -32,7 +32,7 @@ const apiAction = (() => {
     };
     const getAirQ = async (lat, lon) => {
       const airFetch = await fetch(
-        `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${currentValue}`,
+        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${currentValue}`,
         {
           mode: "cors",
         }
