@@ -115,7 +115,7 @@ const create = (() => {
         return footer;
     }
     const initial = () => {
-        const main = createElement("div", { class: "main" });
+        const body = createElement("div", { class: "body" });
         // make input field and submit button
         const inputContainer = createElement("div", { class: "inputContainer" });
         const inputSearchContainer = createElement('div', {class: "inputSearch"});
@@ -133,47 +133,50 @@ const create = (() => {
         const searchIcon = createElement('img', {class: "searchIcon"});
         searchIcon.src = Icon;
         searchIcon.alt = `Search`;
+        // 
+        const main = createElement('div', {class: 'main'});
         inputContainer.appendChild(menu());
         inputContainer.appendChild(inputSearchContainer);
         inputSearchContainer.appendChild(inputField);
         inputSearchContainer.appendChild(submitBtn);
         submitBtn.appendChild(searchIcon);
         inputContainer.appendChild(temp());
-        main.appendChild(inputContainer);
-        main.appendChild(createFooter());
-        return main;
+        body.appendChild(inputContainer);
+        body.appendChild(main);
+        body.appendChild(createFooter());
+        return body;
     }
     return { initial, temp, listFn, submitFn, toggleFn }
 })();
 // 
 const fillSearchContainer = () => {
-    const main = create.initial();
-    const menu = main.children[0].children[0];
+    const body = create.initial();
+    const menu = body.children[0].children[0];
     const menuList = menu.children[2];
-    const inputField = main.children[0].children[1].children[0];
-    const searchBtn = main.children[0].children[1].children[1];
-    const tempToggle = main.children[0].children[2].children[0];
+    const inputField = body.children[0].children[1].children[0];
+    const searchBtn = body.children[0].children[1].children[1];
+    const tempToggle = body.children[0].children[2].children[0];
 
     // add listeners
     menu.children[0].addEventListener('click', () => {
         menuList.style.display = 'flex';
     });
     menuList.children[0].children[1].addEventListener('click', (e) => {
-        create.listFn(e, menuList, main.children[2], 'flex', [main.children[1], main.children[3]]);
+        create.listFn(e, menuList, body.children[2], 'flex', [body.children[1], body.children[3]]);
     });
     menuList.children[0].children[2].addEventListener('click', (e) => {
-        create.listFn(e, menuList, main.children[1], 'grid', [main.children[2], main.children[3]]);
+        create.listFn(e, menuList, body.children[1], 'grid', [body.children[2], body.children[3]]);
     });
     menuList.children[0].children[3].addEventListener('click', (e) => {
-        create.listFn(e, menuList, main.children[3], 'grid', [main.children[1], main.children[2]]);
+        create.listFn(e, menuList, body.children[3], 'grid', [body.children[1], body.children[2]]);
     });
     searchBtn.addEventListener("click", () => {
-        create.submitFn(inputField, main);
+        create.submitFn(inputField, body.children[1]);
     });
     tempToggle.addEventListener('click', () => {
         create.toggleFn(tempToggle);
         })
-    return main;
+    return body;
 }
 //
 export default fillSearchContainer;
