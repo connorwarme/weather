@@ -10,14 +10,10 @@
 * implement mobile-friendly UI  
   
 ## reflections  
-* initial foray into asynchronous JS (promises, async/await)  
+* initial foray into asynchronous JS (learned promises, async/await syntax, fetch API, utilize data returned)  
 * strove for simplicity and clarity in UI  
 * first effort at a mobile-friendly app  
-
-## highlights  
-* the wind icon indicates wind direction (up is north)  
-* learned how to call API, implement promises, async/await syntax, etc.   
-   
+ 
 ## screenshots  
 * mobile friendly UI - added menu button to select view: current info, detailed data, and forecast  
 ![main](https://github.com/connorwarme/weather/blob/main/screenshots/mobilea.png?raw=true "main")  
