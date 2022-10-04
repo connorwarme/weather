@@ -71,13 +71,11 @@ const create = (() => {
                 card.children[0].textContent = 'Today';
                 if (card.children.length < 9) {
                     makeSpacer(card);
-                    // const spacerDiv = createElement('div', {class: `spacerDiv0`});
-                    // card.insertBefore(spacerDiv, card.children[1]);
-                    // const value = 12 - card.children.length;
-                    // spacerDiv.style.gridRow = `2/${value}`;
                 }
             }
-            container.appendChild(card);
+            if (card.children.length > 1) {
+                container.appendChild(card);
+            }
             i += 1;
         })
         return container;
@@ -85,8 +83,6 @@ const create = (() => {
     return { forecast }
 })();
 const fillForecastContainer = (input, object, boolean) => {
-    console.log(input);
-    console.log(object);
     const forecastDiv = create.forecast(input, object, boolean);
     return forecastDiv;
 }
