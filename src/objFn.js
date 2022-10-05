@@ -9,8 +9,8 @@ const returnDate = (object, item) => {
 }
 const sortDays = (object) => {
     const date = returnDate(object, object.list[0]);
+    console.log(date);
     const array = object.list;
-    console.log(array);
     const collection = {
         // !!!
         0: {},
@@ -22,12 +22,11 @@ const sortDays = (object) => {
     };
     array.forEach(index => {
         const indexDate = returnDate(object, index);
-        const i = differenceInCalendarDays(indexDate, date);
-        console.log(`${i}`);
-        console.log(collection);
+        console.log(indexDate);
+        const i = differenceInCalendarDays(indexDate, date) || 0;
+        console.log(i);
         const value = indexDate.getHours();
-        console.log(collection[i]);
-        collection[`${i}`][value] = index;
+        collection[i][value] = index;
     });
     return collection;
 }
