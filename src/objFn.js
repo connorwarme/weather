@@ -3,14 +3,17 @@ import { differenceInCalendarDays } from "date-fns";
 // functions to run on the data, give obj proper values
 const returnDate = (object, item) => {
     const day = item.dt_txt;
-    const date = new Date(day);
+    const date = new Date(day.replace(/ /g,"T"));
+    console.log(date);
     date.setMinutes(date.getMinutes() + (object.city.timezone / 60));
+    console.log(date);
     return date;
 }
 const sortDays = (object) => {
     const date = returnDate(object, object.list[0]);
-    console.log(date);
+    
     const array = object.list;
+    console.log(array);
     const collection = {
         // !!!
         0: {},
