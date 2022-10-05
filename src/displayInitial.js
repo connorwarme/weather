@@ -41,22 +41,24 @@ const create = (() => {
     // submit listener function
     const submitFn = (input, mainDiv) => {
         const userInput = input.value;
+        // if a "location not found" error is displayed, hide it
+        if (input.parentElement.parentElement.children[3]) {
+            input.parentElement.parentElement.children[3].style.display = 'none';
+        }
+        // take user input location and fetch current conditions and forecast data
         apiAction.mainFn(userInput, tempUnit, mainDiv);
         input.value = "";
     };
+    // 
     const resetFont = (array) => {
         array.forEach(index => {
             index.style.fontStyle = 'normal';
         });
     }
     const listFn = (event, parent, displayDiv, style, hideDivArray) => {
-        console.log(event);
-        console.log(parent.children[0].children);
         resetFont(Array.from(parent.children[0].children));
         event.target.style.fontStyle = 'italic';
         parent.style.display = 'none';
-        console.log(displayDiv);
-        console.log(style);
         displayDiv.style.display = style;
         hideDivArray.forEach(index => {
             index.style.display = 'none';

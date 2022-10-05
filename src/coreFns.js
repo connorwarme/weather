@@ -10,6 +10,7 @@ const apiAction = (() => {
     const currentValue = "917a17f77a60ae96ee081212e94e3f75";
     const getForecast = async (location) => {
       const searchLocation = location;
+      // forecast conditions
       const forecastFetch = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${searchLocation}&appid=${currentValue}&units=imperial`,
         {
@@ -20,7 +21,7 @@ const apiAction = (() => {
       return forecastData;
     };
     const getCurrent = async (location) => {
-      // !!! need to check api call - accurate for current conditions?
+      // current conditions
       const currentFetch = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${currentValue}&units=imperial`,
         {
@@ -31,6 +32,7 @@ const apiAction = (() => {
       return currentData;
     };
     const getAirQ = async (lat, lon) => {
+      // air quality conditions
       const airFetch = await fetch(
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${currentValue}`,
         {
