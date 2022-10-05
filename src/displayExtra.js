@@ -1,6 +1,6 @@
 import { createElement, whatTemp } from "./utility";
-import Icon from './icons/arrow.svg';
-// create display
+import Icon from "./icons/arrow.svg";
+// create display: detailed data about current weather conditions
 const detailContainer = createElement("div", { class: "detailContainer" });
 const detail = (() => {
   const helper = (description, value) => {
@@ -13,16 +13,15 @@ const detail = (() => {
     container.appendChild(data);
     return container;
   };
+  // wind icon points in the wind direction
   const windFn = (value) => {
-    // !!! might need a few things - one for wind speed, another for direction
     const wind = helper("Wind", `${value.speed} mph`);
-    wind.setAttribute('id', 'wind');
-    const windIcon = createElement('img', {class: "windIcon"});
+    wind.setAttribute("id", "wind");
+    const windIcon = createElement("img", { class: "windIcon" });
     windIcon.src = Icon;
     windIcon.style.transform = `rotate(${value.deg}deg)`;
-    windIcon.alt = `Wind direction: ${value.deg}`
-    wind.insertBefore(windIcon, wind.children[1])
-    // check units !! yikes
+    windIcon.alt = `Wind direction: ${value.deg}`;
+    wind.insertBefore(windIcon, wind.children[1]);
     return wind;
   };
   const visFn = (value) => {
@@ -35,7 +34,10 @@ const detail = (() => {
   };
   const feelsFn = (specific, value) => {
     const feels = helper("Feels Like", "");
-    const feelsDiv = createElement("div", {id: "temp", class: `${value.feelsLike.far} ${value.feelsLike.cel}`});
+    const feelsDiv = createElement("div", {
+      id: "temp",
+      class: `${value.feelsLike.far} ${value.feelsLike.cel}`,
+    });
     feelsDiv.textContent = `${specific}`;
     feels.children[1].appendChild(feelsDiv);
     return feels;
@@ -49,12 +51,12 @@ const detail = (() => {
   };
   const precipFn = (value) => {
     let newVal = {
-      '3h': 0,
+      "3h": 0,
     };
     if (value !== undefined) {
       newVal = value;
     }
-    const precip = helper("Accumulation", `${newVal['3h']}mm in 3h`);
+    const precip = helper("Accumulation", `${newVal["3h"]}mm in 3h`);
     const label = createElement("div", { class: "precipLabel" });
     label.textContent = "Precipitation";
     precip.insertBefore(label, precip.firstChild);
@@ -62,8 +64,7 @@ const detail = (() => {
   };
   const airFn = (value) => {
     const air = helper("Air Quality", `${value}`);
-    // !!! might need units clarifier (score out of 100?)
-    air.children[1].setAttribute('id', `quality${value}`);
+    air.children[1].setAttribute("id", `quality${value}`);
     return air;
   };
   const pressureFn = (value) => {
