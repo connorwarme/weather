@@ -23,9 +23,11 @@ const sortDays = (object) => {
     array.forEach(index => {
         const indexDate = returnDate(object, index);
         const i = differenceInCalendarDays(indexDate, date);
+        console.log(`${i}`);
+        console.log(collection);
         const value = indexDate.getHours();
         console.log(collection[i]);
-        collection[i][value] = index;
+        collection[`${i}`][value] = index;
     });
     return collection;
 }
