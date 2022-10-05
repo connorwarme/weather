@@ -23,7 +23,10 @@ const sortDays = (object) => {
     array.forEach(index => {
         const indexDate = returnDate(object, index);
         console.log(indexDate);
-        const i = differenceInCalendarDays(indexDate, date) || 0;
+        let i = 0;
+        if (differenceInCalendarDays(indexDate, date)) {
+            i = differenceInCalendarDays(indexDate, date)
+        };
         console.log(i);
         const value = indexDate.getHours();
         collection[i][value] = index;
