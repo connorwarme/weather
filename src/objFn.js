@@ -5,9 +5,7 @@ import { differenceInCalendarDays } from "date-fns";
 const returnDate = (object, item) => {
   const day = item.dt_txt;
   const date = new Date(day.replace(/ /g, "T"));
-  console.log(date);
   date.setMinutes(date.getMinutes() + object.city.timezone / 60);
-  console.log(date);
   return date;
 };
 // take forecast object (40 entries) and separate by day
@@ -50,5 +48,4 @@ const findHighLow = (object) => {
   }
   return [high, low];
 };
-
 export { sortDays, findHighLow };

@@ -10,7 +10,6 @@ import {
 const create = (() => {
   const container = createElement("div", { class: "forecastContainer" });
   const makeTitle = (object, number) => {
-    console.log(number);
     const day = getTheDay(object.day + number);
     const title = createElement("div", { class: "cardDay" });
     title.textContent = day;
